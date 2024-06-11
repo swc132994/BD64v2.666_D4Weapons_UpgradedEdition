@@ -1,0 +1,24 @@
+//===========================================================================
+//
+// Brightmaps
+//
+//===========================================================================
+
+//Energy Pistol Switch
+
+brightmap sprite PISSA0	{map "Brightmaps/EnergyPistol/PISTOLIDLE.png"  Disablefullbright}
+brightmap sprite PISSB0	{map "Brightmaps/EnergyPistol/PISTOLIDLE.png"  Disablefullbright}
+brightmap sprite PISSC0	{map "Brightmaps/EnergyPistol/PISTOLIDLE.png"  Disablefullbright}
+
+//Energy Pistol Idle
+
+brightmap sprite PISGA0	{map "Brightmaps/EnergyPistol/PISTOLIDLE.png"  Disablefullbright}
+
+//Energy Pistol Recoil
+
+brightmap sprite PISFB0	{map "Brightmaps/EnergyPistol/PISTOLRECOIL1.png"  Disablefullbright}
+brightmap sprite PISFC0	{map "Brightmaps/EnergyPistol/PISTOLRECOIL2.png"  Disablefullbright}
+brightmap sprite PISFD0	{map "Brightmaps/EnergyPistol/PISTOLRECOIL2.png"  Disablefullbright}
+brightmap sprite PISFE0	{map "Brightmaps/EnergyPistol/PISTOLIDLE.png"  Disablefullbright}
+brightmap sprite PISFF0	{map "Brightmaps/EnergyPistol/PISTOLIDLE.png"  Disablefullbright}
+

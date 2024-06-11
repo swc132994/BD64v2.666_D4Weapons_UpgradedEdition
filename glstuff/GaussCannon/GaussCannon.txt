@@ -1,0 +1,26 @@
+//===========================================================================
+//
+// Brightmaps
+//
+//===========================================================================
+
+//Gauss Cannon Pick-up
+
+brightmap sprite D4W7B0	{map "Brightmaps/GaussCannon/GAUSSPICKUP.png"  Disablefullbright}
+
+//Gauss Cannon Switch
+
+brightmap sprite GCASA0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
+brightmap sprite GCASB0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
+brightmap sprite GCASC0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
+
+//Gauss Cannon Idle
+
+brightmap sprite GCAGA0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
+
+//Gauss Cannon Recoil
+
+brightmap sprite GCAFG0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
+brightmap sprite GCAFH0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
+brightmap sprite GCAFI0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
+brightmap sprite GCAFJ0	{map "Brightmaps/GaussCannon/GAUSSIDLE.png"  Disablefullbright}
