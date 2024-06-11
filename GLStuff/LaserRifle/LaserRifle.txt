@@ -1,0 +1,16 @@
+//===========================================================================
+//
+// Brightmaps
+//
+//===========================================================================
+
+//Laser Rifle Idle
+
+brightmap sprite D4LGA0	{map "Brightmaps/LaserRifle/LSRIDLE.png"  Disablefullbright}
+brightmap sprite D4LGB0	{map "Brightmaps/LaserRifle/LSRIDLE.png"  Disablefullbright}
+brightmap sprite D4LGC0	{map "Brightmaps/LaserRifle/LSRIDLE.png"  Disablefullbright}
+
+//Laser Rifle Start
+
+brightmap sprite D4LFC0	{map "Brightmaps/LaserRifle/LSRIDLE.png"  Disablefullbright}
+brightmap sprite D4LFD0	{map "Brightmaps/LaserRifle/LSRIDLE.png"  Disablefullbright}

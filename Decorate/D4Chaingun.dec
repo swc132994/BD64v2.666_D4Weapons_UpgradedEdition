@@ -1,0 +1,399 @@
+ACTOR D4Chaingun : BrutalD464Weapon Replaces ChaingunSpawner
+{
+Weapon.SelectionOrder 700
+Weapon.AmmoUse 1
+Weapon.AmmoGive 20
+Weapon.AmmoType "64HighCaliberBox"
+Weapon.BobStyle InverseSmooth
+Weapon.BobRangeX 0.5
+Weapon.BobRangeY 0.4
+Weapon.BobSpeed 1.7
+Inventory.PickupSound "Minigun/Pickup"
+Inventory.PickupMessage "$GOTCHAINGUN"
+Obituary "$OB_MPCHAINGUN"
+Tag "$TAG_CHAINGUN"
++INVENTORY.RESTRICTABSOLUTELY
++inventory.IGNORESKILL
++WEAPON.NOAUTOFIRE
+	States
+	{
+	Spawn:
+		D4W4 B -1
+		Stop
+	KickingFlash:
+		MIGS CBA 1
+		MIGS A 10
+		MIGS ABC 1
+		Stop
+	AirKickingFlash:
+		MIGS CBA 1
+		MIGS A 12
+		MIGS ABC 1
+		Stop
+	SlideKickingStart:
+		MIGS CBA 1
+		MIGS A 19
+	SlideKickingEnd:
+		MIGS A 7
+		MIGS ABC 1
+		Stop
+	v1Ready:
+	Ready:
+		MIGG A 1 A_WeaponReady
+		TNT1 A 0 A_JumpIfInventory("IsUpgradingWeapons",1,"UpgradeWeapons")
+		TNT1 A 0 A_TakeInventory("GatlingOverheat",1)
+		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick")
+		TNT1 A 0 A_JumpIfInventory("WeaponAltMode",1,"ChangeAltMode")
+		TNT1 A 0 A_JumpIfInventory("Spin",1,"Ready2")
+		Loop
+	Ready2:
+		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick")
+		TNT1 A 0 A_TakeInventory("GatlingOverheat",1)
+		MIGG ABCD 1 A_WeaponReady
+		TNT1 A 0 A_AlertMonsters
+		TNT1 A 0 A_PlaySound("Minigun/SpinLoop",7,1,1)
+		Loop
+	ChangeAltMode:
+		MIGG A 1
+		TNT1 A 0 A_TakeInventory("WeaponAltMode",1)
+		TNT1 A 0 A_JumpIfInventory("ChainGunUpgrade",1,1)
+		Goto NoUpgrades
+		MIGG A 1
+		TNT1 A 0 A_JumpIfInventory("ChaingunUpgrade",2,1)
+		Goto NoUpgrades2
+		MIGG A 1
+		TNT1 A 0 A_JumpIfInventory("D4AltMode",1,"ChangeAltMode2")
+		TNT1 A 0 A_GiveInventory("D4AltMode",1)
+		TNT1 A 0 A_PlaySound("Minigun/ModSwitch",chan_weapon)
+		TNT1 A 0 A_Print("Hydra Grinder Selected",2)
+		MIGG ABCB 2
+		Goto Ready
+	ChangeAltMode2:
+		MIGG A 1
+		TNT1 A 0 A_TakeInventory("D4AltMode",1)
+		TNT1 A 0 A_PlaySound("Minigun/ModSwitch",chan_weapon)
+		TNT1 A 0 A_Print("Support Engine Selected",2)
+		MIGG ABCB 2
+		Goto Ready
+	Deselect:
+		MIGS CBA 1
+		TNT1 A 0 A_TakeInventory("Spin",0)
+		TNT1 A 0 A_TakeInventory("IsD4Weapon",0)
+		TNT1 A 0 A_TakeInventory("D4ChainGunSelected",0)
+		TNT1 A 0 A_TakeInventory("D4AltMode",0)
+		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_Lower
+		Wait
+	Select:
+		TNT1 A 0 A_GiveInventory("D4ChainGunSelected",1)
+		TNT1 A 0 A_GiveInventory("IsD4Weapon",1)
+		TNT1 A 0 A_StopSound(7)
+		MIGS ABC 1 Offset(0,32)
+		TNT1 A 0 A_Raise
+		Wait
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("Spin",1,"AltHold")
+		TNT1 A 0 A_PlaySound("Minigun/SpinStart",6)
+		MIGG AABB 2
+		TNT1 A 0 A_PlaySound("Minigun/SpinLoop",7,1,1)
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))		//was tracer horz 12
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG CD 2
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF B 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG AB 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG CD 1
+		MIGG AB 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",1)
+		MIGF B 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG CD 1
+		MIGG AB 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG CD 1
+	Hold:
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",1)
+		MIGF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG B 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",3)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF B 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG D 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",5)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG B 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",4)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF B 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG D 1
+		TNT1 A 0 A_Refire
+		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_PlaySound("Minigun/SpinEnd",6)
+		MIGG ABCD 1
+		MIGG ABCDABBCCDDD 1
+		Goto Ready
+	AltHold:
+		TNT1 A 0 A_PlaySound("Minigun/SpinLoop",7,1,1)
+		TNT1 A 0 A_JumpIfInventory("D4AltMode",1,"HydraFire")
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG B 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",3)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF B 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG D 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",5)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG B 1
+		TNT1 A 0 A_FireCustomMissile("Tracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 A 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(4.0,4.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/Fire",4)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle1",20,5,22)
+		MIGF B 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG D 1
+		TNT1 A 0 A_Refire("AltHold")
+		TNT1 A 0 A_StopSound(7)
+		MIGG ABCD 1 A_WeaponReady
+		Goto Ready2
+	HydraFire:
+		TNT1 A 0 A_JumpIfInventory("GatlingOverheat",100,"StallOut")
+		TNT1 A 0 A_PlaySound("Minigun/SpinLoop",7,1,1)
+		TNT1 A 0 A_GiveInventory("GatlingOverheat",1)
+		TNT1 AAA 0 A_FireCustomMissile("BlueTracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 AAA 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/HydraFire",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,22)
+		MIGF C 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG B 1
+		TNT1 A 0 A_JumpIfInventory("GatlingOverheat",100,"StallOut")
+		TNT1 A 0 A_GiveInventory("GatlingOverheat",1)
+		TNT1 AAA 0 A_FireCustomMissile("BlueTracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 AAA 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/HydraFire",3)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,22)
+		MIGF D 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG D 1
+		TNT1 A 0 A_JumpIfInventory("GatlingOverheat",100,"StallOut")
+		TNT1 A 0 A_GiveInventory("GatlingOverheat",1)
+		TNT1 AAA 0 A_FireCustomMissile("BlueTracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 AAA 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/HydraFire",5)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,22)
+		MIGF C 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG B 1
+		TNT1 A 0 A_JumpIfInventory("GatlingOverheat",100,"StallOut")
+		TNT1 A 0 A_GiveInventory("GatlingOverheat",1)
+		TNT1 AAA 0 A_FireCustomMissile("BlueTracer",random(-3,3),0,6,-6,0,random(-2,2))
+		TNT1 AAA 0 A_Firecustommissile("ChaingunCaseSpawn",0,0,10,-12)
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_FireBullets(6.0,6.0,1,13,"MachinegunBulletPuff")
+		TNT1 A 0 A_PlaySound("Minigun/HydraFire",4)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,22)
+		MIGF D 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		MIGG D 1
+		TNT1 A 0 A_Refire("HydraFire")
+		TNT1 A 0 A_StopSound(7)
+		MIGG ABCD 1 A_WeaponReady
+		Goto Ready2
+	StallOut:
+		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_PlaySound("Minigun/Cooldown",5)
+		MIGG A 1 offset(0,30)
+		MIGG B 1 offset(0,40)
+		MIGG C 1 offset(0,50)
+	Cooling:
+		MIGG A 1 offset(0,60)
+		TNT1 A 0 A_TakeInventory("GatlingOverheat",1)
+		TNT1 A 0 A_JumpIfInventory("GatlingOverheat",1,"Cooling")
+		Goto Ready
+	AltFire:
+		TNT1 A 0 A_JumpIfInventory("ChainGunUpgrade",1,1)
+		Goto NoUpgrades
+		TNT1 A 0 A_JumpIfInventory("Spin",1,"StopAlt")
+		TNT1 A 0 A_GiveInventory("Spin",1)
+		TNT1 A 0 A_PlaySound("Minigun/SpinStart",6)
+		TNT1 A 0 A_JumpIfInventory("64HighCaliberBox",1,1)
+		Goto IdleNoAmmo
+		MIGG ABCD 2
+		Goto Ready2
+	StopAlt:
+		TNT1 A 0 A_TakeInventory("Spin",1)
+		TNT1 A 0 A_StopSound(7)
+		TNT1 A 0 A_PlaySound("Minigun/SpinEnd",6)
+		MIGG ABCD 1
+		MIGG ABCDABCD 2 A_WeaponReady
+		MIGG ABCD 3 A_WeaponReady
+		Goto Ready
+	NoUpgrades:
+		TNT1 A 0 A_Print("You have no upgrades for this weapon",2)
+		Goto Ready
+	NoUpgrades2:
+		TNT1 A 0 A_Print("You don't have a level 2 upgrade for this weapon",2)
+		Goto Ready
+	IdleNoAmmo:
+		MIGG A 1 A_WeaponReady
+		TNT1 A 0 A_TakeInventory("Spin",1)
+		Goto Ready
+	UpgradeWeapons:
+		TNT1 A 0 A_TakeInventory("IsUpgradingWeapons",1)
+		TNT1 A 0 SetPlayerProperty(0,1,4)
+		PK4P ABCDEFGH 2
+		TNT1 A 6
+		TNT1 A 0 A_PlaySound("UACBot/Pickup")
+		TNT1 A 0 SetPlayerProperty(0,0,4)
+		TNT1 A 12
+		Goto Select
+	}
+}
+
+Actor GatlingOverheat : Ammo
+{
+Inventory.MaxAmount 100
+Inventory.PickupMessage "Not supposed to be picked up."
+Inventory.Icon STTPRCNT
++IgnoreSkill
+	States
+	{
+	Spawn:
+		TNT1 A -1
+		Stop
+	}
+}
+
+Actor BlueTracer : FastProjectile
+{
+scale 0.15
+damage 0
+speed 140
+radius 2
+height 2
+alpha 0.9
+renderstyle Add
+Projectile
++RANDOMIZE
++FORCEXYBILLBOARD
++DONTSPLASH
++NOEXTREMEDEATH
+	states
+	{
+	Spawn:
+		TNT1 A 1 NoDelay A_SpawnItemEx("PistolheavyplasmaTracerTrail",0,0,2)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail2",(2*momx)/-35.0,-(2*momy)/-35.0,2+(2*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail3",(4*momx)/-35.0,-(4*momy)/-35.0,2+(4*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail4",(6*momx)/-35.0,-(6*momy)/-35.0,2+(6*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail5",(8*momx)/-35.0,-(8*momy)/-35.0,2+(8*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail6",(10*momx)/-35.0,-(10*momy)/-35.0,2+(10*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail7",(12*momx)/-35.0,-(12*momy)/-35.0,2+(12*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail8",(14*momx)/-35.0,-(14*momy)/-35.0,2+(14*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail9",(16*momx)/-35.0,-(16*momy)/-35.0,2+(16*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail10",(18*momx)/-35.0,-(18*momy)/-35.0,2+(18*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail11",(20*momx)/-35.0,-(20*momy)/-35.0,2+(20*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolplasmaTracerTrail12",(22*momx)/-35.0,-(22*momy)/-35.0,2+(22*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		Loop
+	Death:
+	XDeath:
+		TNT1 A 1
+		Stop
+	}
+}

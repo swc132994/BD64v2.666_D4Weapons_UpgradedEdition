@@ -1,0 +1,454 @@
+ACTOR D4PlasmaGun : BrutalD464Weapon Replaces PlasmaRifleSpawner
+{
+Weapon.SelectionOrder 100
+Weapon.AmmoUse 1
+Weapon.AmmoGive 20
+Weapon.AmmoType "Cell"
+Weapon.BobStyle InverseSmooth
+Weapon.BobRangeX 0.4
+Weapon.BobRangeY 0.3
+Weapon.BobSpeed 1.8
+Inventory.PickupSound "PlasmaRifle/Pickup"
+Inventory.PickupMessage "You got the Plasma Gun!"
+Obituary "$OB_MPPLASMARIFLE"
+Tag "Plasma Gun"
++INVENTORY.RESTRICTABSOLUTELY
++Inventory.IGNORESKILL
++WEAPON.NOAUTOFIRE
+	States
+	{
+	Spawn:
+		D4W6 A -1
+		Stop
+	KickingFlash:
+		PLRS CBA 1
+		PLRS A 10
+		PLRS ABC 1
+		Stop
+	AirKickingFlash:
+		PLRS CBA 1
+		PLRS A 12
+		PLRS ABC 1
+		Stop
+	SlideKickingStart:
+		PLRS CBA 1
+		PLRS A 19
+	SlideKickingEnd:
+		PLRS A 7
+		PLRS ABC 1
+		Stop
+	v1ready:
+	Ready:
+		PLRG A 1 A_WeaponReady
+		TNT1 A 0 A_JumpIfInventory("IsUpgradingWeapons",1,"UpgradeWeapons")
+		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick")
+		TNT1 A 0 A_JumpIfInventory("WeaponAltMode",1,"ChangeAltMode")
+		Loop
+	ChangeAltMode:
+		PLRG A 1
+		TNT1 A 0 A_TakeInventory("WeaponAltMode",1)
+		TNT1 A 0 A_JumpIfInventory("PlasmaRifleUpgrade",1,1)
+		Goto NoUpgrades
+		PLRG A 1
+		TNT1 A 0 A_JumpIfInventory("PlasmaRifleUpgrade",2,1)
+		Goto NoUpgrades2
+		PLRG A 1
+		TNT1 A 0 A_JumpIfInventory("D4AltMode",1,"ChangeAltMode2")
+		TNT1 A 0 A_GiveInventory("D4AltMode",1)
+		TNT1 A 0 A_Print("Bouncers selected",2)
+		PLRS CBA 2
+		TNT1 A 0 A_PlaySound("PlasmaRifle/ModSwitch",CHAN_WEAPON)
+		PLRS ABC 2
+		PLRG A 1
+		Goto Ready
+	ChangeAltMode2:
+		PLRG A 1
+		TNT1 A 0 A_TakeInventory("D4AltMode",1)
+		TNT1 A 0 A_Print("Electrosphere Selected",2)
+		PLRS CBA 2
+		TNT1 A 0 A_PlaySound("PlasmaRifle/ModSwitch",CHAN_WEAPON)
+		PLRS ABC 2
+		PLRG A 1
+		Goto Ready
+	Deselect:
+		TNT1 A 0 A_StopSound(1)
+		PLRS CBA 1
+		TNT1 A 0 A_TakeInventory("IsD4Weapon",0)
+		TNT1 A 0 A_TakeInventory("D4PlasmaSelected",0)
+		TNT1 A 0 A_TakeInventory("D4AltMode",0)
+		TNT1 A 0 A_Takeinventory("HasPlasmaWeapon",0)
+		TNT1 A 0 A_Lower
+		Wait
+	Select:
+		TNT1 A 0 A_Giveinventory("HasPlasmaWeapon",1)
+		TNT1 A 0 A_GiveInventory("D4PlasmaSelected",1)
+		TNT1 A 0 A_GiveInventory("IsD4Weapon",1)
+		PLRS ABC 1 Offset(0,32)
+		TNT1 A 0 A_Raise
+		Wait
+	Fire:
+		TNT1 A 0 A_FireCustomMissile("PlasmaBallWeak",0,1,6,-3,0,0)
+		TNT1 A 0 A_PlaySound("PlasmaRifle/Fire",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,22)
+		PLRF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		PLRF BC 1 A_SetAngle(random(1,-1) + angle)
+		TNT1 A 0 A_Refire
+		PLRG A 6 A_WeaponReady(1)
+		Goto Ready
+	AltFire:
+		TNT1 A 0 A_JumpIfInventory("PlasmaRifleUpgrade",1,1)
+		Goto NoUpgrades
+		TNT1 A 0 A_JumpIfInventory("D4AltMode",1,"AltFire2")
+		TNT1 A 0 A_JumpIfInventory("Cell",20,1)
+		Goto NoAmmo
+		TNT1 A 0 A_TakeInventory("Cell",20)
+		TNT1 A 0 A_FireCustomMissile("PlasmaBallHeavy",0,1,6,-3,0,0)
+		TNT1 A 0 A_PlaySound("PlasmaRifle/Electrosphere",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,22)
+		PLRF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		PLRF BC 1 A_SetAngle(random(1,-1) + angle)
+		PLRG A 16
+		PLRG A 6 A_WeaponReady(1)
+		Goto Ready
+	AltFire2:
+		TNT1 A 0 A_JumpIfInventory("Cell",2,"AltFire2Fire")
+		Goto NoAmmo
+	AltFire2Fire:
+		TNT1 A 0 A_TakeInventory("Cell",2)
+		TNT1 A 0 A_FireCustomMissile("PlasmaBallBounce",0,1,6,-3,0,0)
+		TNT1 A 0 A_PlaySound("PlasmaRifle/Fire2",1)
+		TNT1 A 0 A_JumpIfInventory("IsCrouching",1,3)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,40)
+		TNT1 A 0 A_Jump(256,2)
+		TNT1 A 0 A_SpawnItemEx("PlayerMuzzle3",20,5,22)
+		PLRF A 1 BRIGHT A_SetAngle(random(1,-1) + angle)
+		PLRF BC 1 A_SetAngle(random(1,-1) + angle)
+		TNT1 A 0 A_Refire
+		PLRG A 6 A_WeaponReady(1)
+		Goto Ready
+	NoUpgrades:
+		TNT1 A 0 A_Print("You have no upgrades for this weapon",2)
+		Goto Ready
+	NoUpgrades2:
+		TNT1 A 0 A_Print("You don't have a level 2 upgrade for this weapon",2)
+		Goto Ready
+	NoAmmo:
+		TNT1 A 0 A_StopSound(1)
+		TNT1 A 0 A_Print("You don't have enough ammo to use this weapon's alt fire",2)
+		Goto Ready
+	UpgradeWeapons:
+		TNT1 A 0 A_TakeInventory("IsUpgradingWeapons",1)
+		TNT1 A 0 SetPlayerProperty(0,1,4)
+		PK4P ABCDEFGH 2
+		TNT1 A 6
+		TNT1 A 0 A_PlaySound("UACBot/Pickup")
+		TNT1 A 0 SetPlayerProperty(0,0,4)
+		TNT1 A 12
+		Goto Select
+	}
+}
+
+ACTOR PlasmaBallWeak : FastProjectile
+{
+Scale 0.70
+Damage 12
+Speed 60
+Radius 4
+Height 4
+alpha 0.90
+renderstyle Add
+DamageType "Plasma"
+Decal "SmallerScorch"
+Species "Marines"
+Obituary "$OB_MPPLASMARIFLE"
+Projectile
++RANDOMIZE
++NOBLOOD
++NORADIUSDMG
++THRUSPECIES
++MTHRUSPECIES
++DONTSPLASH
+-NOBLOCKMAP
+	States
+	{
+	Spawn:
+		PLSS A 1 Bright
+		TNT1 A 0 A_CheckFloor("Death")
+		TNT1 A 0 A_SpawnItemEx("BlueFlareSmallProjectile")
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail1",(3 *momx)/-35.0,-(3 *momy)/-35.0,0+(3 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail2",(6 *momx)/-35.0,-(6 *momy)/-35.0,0+(6 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail3",(9 *momx)/-35.0,-(9 *momy)/-35.0,0+(9 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail4",(12*momx)/-35.0,-(12*momy)/-35.0,0+(12*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail5",(15*momx)/-35.0,-(15*momy)/-35.0,0+(15*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail6",(18*momx)/-35.0,-(18*momy)/-35.0,0+(18*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail7",(21*momx)/-35.0,-(21*momy)/-35.0,0+(21*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail8",(24*momx)/-35.0,-(24*momy)/-35.0,0+(24*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail9",(27*momx)/-35.0,-(27*momy)/-35.0,0+(27*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail9",(30*momx)/-35.0,-(30*momy)/-35.0,0+(30*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		Loop
+	Death:
+	XDeath:
+		TNT1 A 0 A_PlaySound("weapons/plasmax", CHAN_WEAPON)
+		TNT1 A 1 A_Explode(6,50,1)
+		TNT1 A 0 A_SpawnItemEx("DetectFloorCraterSmall")
+		TNT1 A 0 A_SpawnItemEx("DetectCeilCraterSmall")
+		TNT1 A 0 A_CustomMissile("BluePlasmaFire",0,0,random(0,360),2,random(0,360))
+		TNT1 AAAAA 0 A_CustomMissile("BluePlasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 AAAA 1 A_SpawnItemEx("LensFlareTorchBlue")
+		PLSE ABC 2 Bright A_CustomMissile("PlasmaSmoke",1,0,random(0,360),2,random(0,160))
+		PLSE DEF 2 Bright
+		Stop
+	}
+}
+
+ACTOR PlasmaBallBounce : PlasmaBall
+{
+Scale 0.7
+Speed 60
+Damage 8
+alpha 0.90
+renderstyle Add
+DamageType "Plasma"
+Decal "SmallerScorch"
+SeeSound "PlasmaRifle/Bounce"
+BounceSound "PlasmaRifle/Bounce"
+WallBounceSound "PlasmaRifle/Bounce"
+Obituary "$OB_MPPLASMARIFLE"
+Decal "SmallerScorch"
+BounceType "Doom"
+BounceFactor 1.5
+BounceCount 4
+ReactionTime 60
++DONTSPLASH
+	States
+	{
+	Spawn:
+		PLSS A 1 Bright
+		TNT1 A 0 A_Countdown
+		TNT1 A 0 A_SpawnItemEx("BlueFlareSmallProjectile")
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail1",(3 *momx)/-35.0,-(3 *momy)/-35.0,0+(3 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail2",(6 *momx)/-35.0,-(6 *momy)/-35.0,0+(6 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail3",(9 *momx)/-35.0,-(9 *momy)/-35.0,0+(9 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail4",(12*momx)/-35.0,-(12*momy)/-35.0,0+(12*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail5",(15*momx)/-35.0,-(15*momy)/-35.0,0+(15*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail6",(18*momx)/-35.0,-(18*momy)/-35.0,0+(18*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail7",(21*momx)/-35.0,-(21*momy)/-35.0,0+(21*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail8",(24*momx)/-35.0,-(24*momy)/-35.0,0+(24*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail9",(27*momx)/-35.0,-(27*momy)/-35.0,0+(27*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("WeakPlasmaBallTrail9",(30*momx)/-35.0,-(30*momy)/-35.0,0+(30*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		Loop
+	Death:
+	XDeath:
+		TNT1 A 0 A_PlaySound("weapons/plasmax", CHAN_WEAPON)
+		TNT1 A 1 A_Explode(6,50,1)
+		TNT1 A 0 A_SpawnItemEx("DetectFloorCraterSmall")
+		TNT1 A 0 A_SpawnItemEx("DetectCeilCraterSmall")
+		TNT1 A 0 A_CustomMissile("BluePlasmaFire",0,0,random(0,360),2,random(0,360))
+		TNT1 AAAAA 0 A_CustomMissile("BluePlasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 AAAA 1 A_SpawnItemEx("LensFlareTorchBlue")
+		PLSE ABC 2 Bright A_CustomMissile("PlasmaSmoke",1,0,random(0,360),2,random(0,160))
+		PLSE DEF 2 Bright
+		Stop
+	}
+}
+
+Actor WeakPlasmaBallTrail1
+{
+Scale 0.65
+Alpha 0.99
+Renderstyle Add
++CLIENTSIDEONLY
++NOBLOCKMAP
++NOGRAVITY
++DONTSPLASH
+	States
+	{
+	Spawn:
+		PLSS B 2 Bright
+		Stop
+	}
+}
+
+Actor WeakPlasmaBallTrail2 : WeakPlasmaBallTrail1
+{
+Scale 0.6
+Alpha 0.8
+	States
+	{
+	Spawn:
+		PLSS A 2 Bright
+		Stop
+	}
+}
+
+Actor WeakPlasmaBallTrail3 : WeakPlasmaBallTrail1
+{
+Scale 0.55
+Alpha 0.7
+}
+
+Actor WeakPlasmaBallTrail4 : WeakPlasmaBallTrail2
+{
+Scale 0.50
+Alpha 0.6
+}
+
+Actor WeakPlasmaBallTrail5 : WeakPlasmaBallTrail2
+{
+Scale 0.45
+Alpha 0.5
+}
+
+Actor WeakPlasmaBallTrail6 : WeakPlasmaBallTrail1
+{
+Scale 0.40
+Alpha 0.4
+}
+
+Actor WeakPlasmaBallTrail7 : WeakPlasmaBallTrail2
+{
+Scale 0.35
+Alpha 0.3
+}
+
+Actor WeakPlasmaBallTrail8 : WeakPlasmaBallTrail1
+{
+Scale 0.30
+Alpha 0.2
+}
+
+Actor WeakPlasmaBallTrail9 : WeakPlasmaBallTrail2
+{
+Scale 0.25
+Alpha 0.1
+}
+
+Actor PlasmaBallHeavy : FastProjectile
+{
+scale 0.9
+damage 60
+speed 90
+height 8
+radius 8
+Alpha 0.9
+RenderStyle Add
+damagetype "plasma"
+Decal "Scorch"
++FORCERADIUSDMG
++BLOODSPLATTER
++DONTSPLASH
+	States
+	{
+	Spawn:
+		TNT1 A 1 NoDelay A_SpawnItemEx("gaussheavyplasmaTracerTrail",0,0,2)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail2",(2 *momx)/-35.0,-(2 *momy)/-35.0,2+(2 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail3",(4 *momx)/-35.0,-(4 *momy)/-35.0,2+(4 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail4",(6 *momx)/-35.0,-(6 *momy)/-35.0,2+(6 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail5",(8 *momx)/-35.0,-(8 *momy)/-35.0,2+(8 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail6",(10*momx)/-35.0,-(10*momy)/-35.0,2+(10*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail7",(12*momx)/-35.0,-(12*momy)/-35.0,2+(12*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail8",(14*momx)/-35.0,-(14*momy)/-35.0,2+(14*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail9",(16*momx)/-35.0,-(16*momy)/-35.0,2+(16*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail10",(18*momx)/-35.0,-(18*momy)/-35.0,2+(18*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail11",(20*momx)/-35.0,-(20*momy)/-35.0,2+(20*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("gaussheavyplasmaTracerTrail12",(22*momx)/-35.0,-(22*momy)/-35.0,2+(22*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_CustomMissile("PlasmaSmoke",1,0,random(0,360),2,random(0,160))
+		TNT1 AAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360))
+		Loop
+	Death:
+		TNT1 AAAAA 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 0 A_SpawnItemEx("DetectFloorCrater")
+		TNT1 A 0 A_SpawnItemEx("DetectCeilCrater")
+		TNT1 A 0 A_PlaySound("FAREXPL",3)
+		BL1I ABCD 1 BRIGHT A_SpawnItemEx("BlueFlare")
+		TNT1 A 0 A_SpawnItemEx("LiquidExplosionEffectSpawner")
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1 A_Explode(40,70)
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		PLSE ABCDEF 3 Bright A_CustomMissile("PlasmaSmoke",1,0,random(0,360),2,random(0,160))
+		Stop
+	}
+}
+
+Actor LightningSpear : FastProjectile
+{
+scale 0.9
+damage 14
+speed 160
+height 8
+radius 8
+Alpha 0.9
+RenderStyle Add
+damagetype "plasma"
+Decal "LaserDecal"
++FORCERADIUSDMG
++SeekerMissile
++BLOODSPLATTER
++DONTSPLASH
+	States
+	{
+	Spawn:
+		TNT1 A 1 NoDelay A_SeekerMissile(25,45)
+		TNT1 A 0 A_ChangeVelocity(1,frandom(-5,5),frandom(-3,3),1)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail",0,0,2)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail2",(2 *momx)/-35.0,-(2 *momy)/-35.0,2+(2 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail3",(4 *momx)/-35.0,-(4 *momy)/-35.0,2+(4 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail4",(6 *momx)/-35.0,-(6 *momy)/-35.0,2+(6 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail5",(8 *momx)/-35.0,-(8 *momy)/-35.0,2+(8 *momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail6",(10*momx)/-35.0,-(10*momy)/-35.0,2+(10*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail7",(12*momx)/-35.0,-(12*momy)/-35.0,2+(12*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail8",(14*momx)/-35.0,-(14*momy)/-35.0,2+(14*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail9",(16*momx)/-35.0,-(16*momy)/-35.0,2+(16*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail10",(18*momx)/-35.0,-(18*momy)/-35.0,2+(18*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail11",(20*momx)/-35.0,-(20*momy)/-35.0,2+(20*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail12",(22*momx)/-35.0,-(22*momy)/-35.0,2+(22*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail12",(24*momx)/-35.0,-(24*momy)/-35.0,2+(24*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail12",(26*momx)/-35.0,-(26*momy)/-35.0,2+(26*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail12",(28*momx)/-35.0,-(28*momy)/-35.0,2+(28*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail12",(30*momx)/-35.0,-(30*momy)/-35.0,2+(30*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 A 0 A_SpawnItemEx("PistolheavyplasmaTracerTrail12",(32*momx)/-35.0,-(32*momy)/-35.0,2+(32*momz)/-35.0,0,0,0,0,SXF_ABSOLUTEANGLE)
+		TNT1 AAA 0 A_CustomMissile("BluePlasmaParticle",0,0,random(0,360))
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("DetectFloorLaser")
+		TNT1 A 0 A_SpawnItemEx("DetectCeilLaser")
+		TNT1 A 0 A_SpawnItemEx("BlueFlare")
+		TNT1 AAA 0 A_CustomMissile("BlueplasmaParticle",0,0,random(0,360),2,random(0,360))
+		TNT1 A 1
+		Stop
+	}
+}

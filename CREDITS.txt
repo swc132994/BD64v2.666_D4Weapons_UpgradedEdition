@@ -1,0 +1,15 @@
+CREDITS
+------
+
+This is still a work in progress
+
+D4 weapon sprites originally by Neccronixis
+Original code by Sgt Mark IV
+Repeater Rifle by Doomguy5th
+BD64 adaptation by KEEN07c (link: https://www.moddb.com/mods/brutal-doom-64/addons/doom4-voxels-and-weapons-for-bd64v3)
+
+BD64 rework for v2.5 & v2.666 by SWC132994
+64 recolour, rehand, 64 drone edit, STG46 and Unmaykr renders by Craneo
+code tweaks by Bigstronk
+sounds from D4T
+STG44 sounds from WW_Nazis!

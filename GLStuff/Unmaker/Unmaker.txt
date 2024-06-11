@@ -1,0 +1,10 @@
+
+//===========================================================================
+//
+// Brightmaps
+//
+//===========================================================================
+
+//Unmaker Pick-up
+
+brightmap sprite D4W8A0	{map "Brightmaps/Unmaker/UNMAKERPICKUP.png"  Disablefullbright}

@@ -1,0 +1,12 @@
+Model D4UnmakerLaser2Silence
+{
+Path "models"
+Model 0 "heavy.md2"
+Skin 0 "Laser01.png"
+PITCHFROMMOMENTUM
+Scale 28 1.5 1.5
+Offset 145 0 0
+FrameIndex ULAZ A 0 0
+Offset -100 0 0
+FrameIndex ULAZ B 0 0
+}

@@ -1,0 +1,74 @@
+//===========================================================================
+//
+// Dynamic Lighting
+//
+//===========================================================================
+
+pulselight ROCKETLIGHT
+{
+	color 1.0 0.3 0.0
+	size 48
+	secondarySize 54
+	interval 0.1
+	offset 0 0 0
+}
+
+object ROCKET3
+{
+	frame MISL { light ROCKETLIGHT }
+}
+
+object PistolplasmaTracerTrail	//D4 NEW
+{
+	frame SPKB {light PLASMABALLSMALL}
+}
+
+object PistolheavyplasmaTracerTrail	//D4 NEW
+{
+	frame SPKB {light PLASMABALL}
+}
+
+object gaussheavyplasmaTracerTrail 	//D4 NEW
+{
+	frame SPKB {light PLASMABALL}
+}
+
+//===========================================================================
+//
+// Brightmaps
+//
+//===========================================================================
+
+//Rocket Launcher Switch
+
+brightmap sprite RKLSA0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLSB0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLSC0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+
+//Rocket Launcher Idle
+
+brightmap sprite RKLGA0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+
+//Rocket Launcher Recoil
+
+brightmap sprite RKLGB0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGC0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGD0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGE0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGF0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGG0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGH0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGI0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGJ0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGK0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGL0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGM0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGN0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGO0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGP0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGQ0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGR0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGS0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGT0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGU0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}
+brightmap sprite RKLGV0	{map "Brightmaps/RocketLauncher/RLIDLE.png"  Disablefullbright}

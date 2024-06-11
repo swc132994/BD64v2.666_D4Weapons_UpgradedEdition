@@ -1,0 +1,3 @@
+addmenukey "Weapon Alt Mode" "WAltMode"
+alias "WAltMode" "pukeName WeapomnAltModeKeyACS"
+defaultbind "X" "WAltMode"

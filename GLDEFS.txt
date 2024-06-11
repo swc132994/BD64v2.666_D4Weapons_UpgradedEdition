@@ -1,0 +1,20 @@
+#INCLUDE "GLStuff/EnergyPistol/EnergyPistol.txt"
+#INCLUDE "GLStuff/Repeater/Repeater.txt"
+#INCLUDE "GLStuff/HeavyAssaultRifle/HeavyAssaultRifle.txt"
+#INCLUDE "GLStuff/RocketLauncher/RocketLauncher.txt"
+#INCLUDE "GLStuff/PlasmaRifle/PlasmaRifle.txt"
+#INCLUDE "GLStuff/GaussCannon/GaussCannon.txt"
+#INCLUDE "GLStuff/BFG/BFG.txt"
+#INCLUDE "GLStuff/Unmaker/Unmaker.txt"
+#INCLUDE "GLStuff/LaserRifle/LaserRifle.txt"
+
+//===========================================================================
+//
+// Brightmaps
+//
+//===========================================================================
+
+brightmap sprite UACBA0	{map "Brightmaps/UACBot/UACBOTBM.png"  Disablefullbright}
+brightmap sprite UACBB0	{map "Brightmaps/UACBot/UACBOTBM.png"  Disablefullbright}
+brightmap sprite UACBC0	{map "Brightmaps/UACBot/UACBOTBM.png"  Disablefullbright}
+brightmap sprite UACBD0	{map "Brightmaps/UACBot/UACBOTBM.png"  Disablefullbright}

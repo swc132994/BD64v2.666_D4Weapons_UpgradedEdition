@@ -1,0 +1,62 @@
+gameinfo
+{
+playerclasses = "Doom4Guy"
+}
+
+clearskills
+
+// removed survival mode due to incompatibilties with the D4 player class
+
+Skill Baby
+{
+	SpawnFilter = Easy
+	Name = "Be Gentle!"
+	AmmoFactor = 2.0
+	EasyBossBrain
+	mustconfirm = "Are you kidding me? This is barely a challenge"
+}
+
+Skill Easy
+{
+	SpawnFilter = Easy
+	Name = "Bring it on!"
+	Key = "n"
+	EasyBossBrain
+	mustconfirm = "Don't complain if you find it boring"
+}
+
+Skill Normal
+{
+	SpawnFilter = Normal
+	Name = "I own Doom!"
+	mustconfirm = "Normal difficulty"
+	defaultskill
+}
+
+Skill Hard
+{
+	SpawnFilter = Hard
+	MonsterHealth = 1.0
+	Name = "Watch me die!"
+	mustconfirm = "Equivalent to Ultra Violence"
+}
+
+Skill HardPlus
+{
+	SpawnFilter = Hard
+	MonsterHealth = 1.0
+	Name = "Watch me die+!"
+	FastMonsters
+	SpawnMulti //This command works correctly in GZDoom, but has no effect on Zandronum
+	mustconfirm = "Equivalent to Ultra Violence+, Fast Monsters, (GZDoom only) Spawn Multiplayer weapons"
+}
+
+Skill Nightmare
+{
+	SpawnFilter = Nightmare
+	MonsterHealth = 1.25
+	Aggressiveness = 0.5
+	FastMonsters
+	Name = "Hardcore!"
+	mustconfirm = "Monsters are more durarble and aggressive"
+}

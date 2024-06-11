@@ -1,0 +1,234 @@
+//===========================================================================
+// Painsaw
+//===========================================================================
+Painsaw/Pickup		D4PSPICK
+
+Painsaw/Select		D4PSSELE
+Painsaw/Idle		D4PSIDLE
+Painsaw/Loop		D4PSLOOP
+Painsaw/LoopEnd		D4PSSTOP
+Painsaw/DeSelect	D4PSSWIT
+
+$volume Painsaw/Idle 0.5
+
+//===========================================================================
+// Energy Pistol
+//===========================================================================
+EnergyPistol/Pickup		D4EPPICK
+
+EnergyPistol/Charge 	D4EPCHRG
+EnergyPistol/ChargeLoop D4EPLOOP
+EnergyPistol/Fire1 		D4EPFIR1
+EnergyPistol/Fire2 		D4EPFIR2
+EnergyPistol/Fire3 		D4EPFIR3
+EnergyPistol/Beep 		D4EPBEEP 
+
+//===========================================================================
+// Repeater
+//===========================================================================
+Repeater/Pickup		D4RPPICK
+
+Repeater/Fire 		D4RPFIR1
+Repeater/MagnumFire D4RPFIR2
+
+$volume Repeater/Fire 0.8
+
+//===========================================================================
+// Shotgun
+//===========================================================================
+Shotgun/Pickup		D4SGPICK
+
+Shotgun/Fire1 		D4SGFIR1
+Shotgun/Fire2 		D4SGFIR2
+Shotgun/Fire3 		D4SGFIR3
+Shotgun/GrenadeFire	D4SGGREN
+Shotgun/PumpIn		D4SGPUM1
+Shotgun/PumpOut		D4SGPUM2
+
+$volume Shotgun/PumpIn 0.5
+$volume Shotgun/PumpOut 0.5
+$random Shotgun/Fire { Shotgun/Fire1 Shotgun/Fire2 Shotgun/Fire3 }
+
+//===========================================================================
+// Super Shotgun
+//===========================================================================
+SuperShotgun/Fire 		D4SSGFIR
+SuperShotgun/4BoreFire 	D4SSG4B
+SuperShotgun/DragonFire D4SSGDRB
+SuperShotgun/Open 		D4SSGOPN
+SuperShotgun/Load 		D4SSGLOA
+SuperShotgun/Close	 	D4SSGCLS
+
+$volume SuperShotgun/Open 0.75
+$volume SuperShotgun/Close 0.75
+
+//===========================================================================
+// Heavy Assault Rifle
+//===========================================================================
+HeavyAssaultRifle/Pickup D4HARPIC
+HeavyAssaultRifle/ModSwitch D4HARMOD
+
+HeavyAssaultRifle/Fire1 D4HARFI1
+HeavyAssaultRifle/Fire2 D4HARFI2
+HeavyAssaultRifle/Fire3 D4HARFI3
+
+HeavyAssaultRifle/ScopedFire1 D4HARSF1
+HeavyAssaultRifle/ScopedFire2 D4HARSF2
+HeavyAssaultRifle/ScopedFire3 D4HARSF3
+
+HeavyAssaultRifle/MicroMissileOpen 	D4MMOPN
+HeavyAssaultRifle/MicroMissileReady D4MMRDY
+HeavyAssaultRifle/MicroMissileFire1 D4MFIRE1
+HeavyAssaultRifle/MicroMissileFire2 D4MFIRE2
+HeavyAssaultRifle/MicroMissileClose D4MMCLS
+
+$random HeavyAssaultRifle/Fire { HeavyAssaultRifle/Fire1 HeavyAssaultRifle/Fire2 HeavyAssaultRifle/Fire3 }
+$random HeavyAssaultRifle/ScopedFire { HeavyAssaultRifle/ScopedFire1 HeavyAssaultRifle/ScopedFire2 HeavyAssaultRifle/ScopedFire3 }
+
+//===========================================================================
+// Minigun
+//===========================================================================
+Minigun/Pickup 	  D4MGPICK
+Minigun/ModSwitch D4MGMOD
+
+Minigun/Fire1 	  D4MGFIR1
+Minigun/Fire2 	  D4MGFIR2
+Minigun/Fire3	  D4MGFIR3
+
+Minigun/HydraFire1 	  D4MGHFI1
+Minigun/HydraFire2 	  D4MGHFI2
+Minigun/HydraFire3	  D4MGHFI3
+
+Minigun/SpinStart D4MGSPST
+Minigun/SpinLoop  D4MGSPLO
+Minigun/SpinEnd	  D4MGSPEN
+Minigun/Cooldown  D4MGCOOL
+
+$random Minigun/Fire { Minigun/Fire1 Minigun/Fire2 Minigun/Fire3 }
+$random Minigun/HydraFire { Minigun/HydraFire1 Minigun/HydraFire2 Minigun/HydraFire3 }
+
+//===========================================================================
+// Rocket Launcher
+//===========================================================================
+RocketLauncher/Pickup D4RLPICK
+
+RocketLauncher/Fire1 D4RLFIR1
+RocketLauncher/Fire2 D4RLFIR2
+RocketLauncher/Fire3 D4RLFIR3
+RocketLauncher/Fire4 D4RLFIR4
+
+RocketLauncher/AltFire1 D4RLAFR1
+RocketLauncher/AltFire2 D4RLAFR2
+
+RocketLauncher/Load  D4RLLOAD
+
+$volume RocketLauncher/Load 0.5
+$random RocketLauncher/Fire { RocketLauncher/Fire1 RocketLauncher/Fire2 RocketLauncher/Fire3 RocketLauncher/Fire4 }
+$random RocketLauncher/AltFire { RocketLauncher/AltFire1 RocketLauncher/AltFire2 }
+
+//===========================================================================
+// Plasma Rifle
+//===========================================================================
+PlasmaRifle/Pickup 			D4PRPICK
+PlasmaRifle/ModSwitch 	  	D4PRMOD
+
+PlasmaRifle/Fire 			D4PRFIRE
+PlasmaRifle/Fire2 			D4PRFIR2
+PlasmaRifle/Electrosphere 	D4PRELSP
+
+PlasmaRifle/Bounce			D4PRBOU
+
+//===========================================================================
+// Gauss Cannon
+//===========================================================================
+D4GaussCannon/Pickup		D4GCPICK
+D4GaussCannon/ModSwitch 	D4GCMOD
+
+D4GaussCannon/Fire1 		D4GCFI1
+D4GaussCannon/Fire2 		D4GCFI2
+D4GaussCannon/Fire3 		D4GCFI3
+
+D4GaussCannon/RailFire1 	D4GCRL1
+D4GaussCannon/RailFire2 	D4GCRL2
+D4GaussCannon/RailFire3 	D4GCRL3
+
+D4GaussCannon/Charge		D4GCCHRG
+D4GaussCannon/Electricity	D4GCELEC
+D4GaussCannon/AltFire 		D4GCALT
+
+$volume D4GaussCannon/Charge 0.6
+$random D4GaussCannon/Fire { D4GaussCannon/Fire1 D4GaussCannon/Fire2 D4GaussCannon/Fire3 }
+$random D4GaussCannon/RailFire { D4GaussCannon/RailFire1 D4GaussCannon/RailFire2 D4GaussCannon/RailFire3 }
+
+//===========================================================================
+// BFG
+//===========================================================================
+D4BFG/Pickup		D4BFGPIC
+D4BFG/ModeSwitch	D4BFGSWI
+
+D4BFG/Charge		D4BFGCHR
+D4BFG/ChargeLoop	D4BFGCHL
+D4BFG/Fire 			D4BFGFIR
+D4BFG/BallImpact 	D4BFGEXP
+
+D4BFG/Charge2		D4BFGCH2
+D4BFG/ChargeLoop2	D4BFGCL2
+D4BFG/Fire2 		D4BFGFI2
+D4BFG/BallImpact2 	D4BFGXP2
+
+D4BFG/MiniCharge	D4BFGMCH
+D4BFG/MiniFire 		D4BFGMFI
+D4BFG/MiniImpact 	D4BFGMXP
+
+D4BFG/LightningStart 	D4BFGLGS
+D4BFG/Lightning 		D4BFGLGF
+D4BFG/LightningStop		D4BFGSTO
+
+$volume D4BFG/LightningStart 0.6
+
+//===========================================================================
+// Unmaker
+//===========================================================================
+DEUnmaker/Pickup	DEUNMPIC
+
+DEUnmaker/Fire 		DEUNMFIR
+DEUnmaker/Fire2 	DEUNMFI2
+
+//===========================================================================
+// Lightning Gun
+//===========================================================================
+D4LightningGun/Pickup	D4LGPICK
+
+D4LightningGun/Idle		D4LGIDLE
+
+D4LightningGun/Start 	D4LGSTRT
+D4LightningGun/Loop 	D4LGLOOP
+D4LightningGun/Stop		D4LGSTOP
+
+//===========================================================================
+//
+// Other SFX
+//
+//===========================================================================
+
+//===========================================================================
+// Backpack
+//===========================================================================
+D4Backpack/Pickup	D4BACPAC
+
+//===========================================================================
+// STG-46
+//===========================================================================
+D4STG46/Pickup loadstg
+D4STG46/Fire   STGFire
+
+//===========================================================================
+// UAC Bot
+//===========================================================================
+UACBot/Pickup	UACBPICK
+
+UACBot/Explode1	UACBEXP1
+UACBot/Explode2	UACBEXP2
+UACBot/Explode3	UACBEXP3
+
+$random UACBot/Explode { UACBot/Explode1 UACBot/Explode2 UACBot/Explode3 }
