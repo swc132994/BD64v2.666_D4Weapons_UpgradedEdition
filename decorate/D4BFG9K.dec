@@ -191,7 +191,6 @@ DamageType "BFG"	// WAS desintegrate
 	{
 	Spawn:
 		TNT1 A 0 NoDelay A_SpawnItemEx("GreenFlare22")
-		TNT1 A 0 A_SpawnItemEx("BEAMFOG")
 		TNT1 A 0 A_RadiusThrust(-100,100)
 		FRPG K 1 Bright Light("BFGBALL_X5")
 		Loop
