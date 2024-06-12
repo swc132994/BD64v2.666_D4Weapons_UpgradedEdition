@@ -491,7 +491,7 @@ Damage 30
 Speed 45
 Radius 8
 Height 8
-Damagetype "ExplosiveImpact"
+Damagetype "ExplosiveImpactSwarmer"
 Species "Marines"
 -NOEXTREMEDEATH
 -GHOST
