@@ -311,10 +311,9 @@ ACTOR 64BFGBallHugeTracer
     +MISSILEMORE
     +MISSILEEVENMORE
 	+FRIENDLY
-    DAMAGETYPE "BFGD"
-   -SOLID
-   -SHOOTABLE
-    BloodType AXEDT
+    -SOLID
+    -SHOOTABLE
+	DAMAGETYPE "BFGD"
     MinMissileChance 0
     RenderStyle None
     ReactionTime 25
@@ -328,12 +327,12 @@ ACTOR 64BFGBallHugeTracer
        XXXX A 0 A_Chase
     Missile:
        XXXX A 0 A_FaceTarget
-       XXXX A 0 A_CustomRailgun(random(15,30),0,none,none,RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING,10,0,0,0,0,0,0,30,0,"64BFGBallHugeTracerPuff")
+       XXXX A 0 A_CustomRailgun(random(15,30),0,none,none,RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING,10,0,"64BFGBallHugeTracerPuff",0,0,0,0,30,0,"64BFGBallHugeTracerTrail")
    Stop
     }
 }
 
-actor 64BFGBallHugeTracerPuff
+actor 64BFGBallHugeTracerTrail
 {
   game Doom
   height 2
@@ -344,6 +343,7 @@ actor 64BFGBallHugeTracerPuff
   Alpha 1
   seesound "null"
   deathsound "null"
+  DamageType "BFGD"
   PROJECTILE
   +RANDOMIZE
   +FORCEXYBILLBOARD
@@ -354,6 +354,26 @@ actor 64BFGBallHugeTracerPuff
     BF4T ABC 1 Bright A_FadeOut (0.333)
     loop
   }
+}
+ACTOR 64BFGBallHugeTracerPuff
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ACTIVATEIMPACT
+	+ACTIVATEPCROSS
+	+NOTELEPORT
+	+PUFFGETSOWNER
+	+FORCERADIUSDMG
+	+FORCEXYBILLBOARD
+	Renderstyle Add
+	Scale 0.25
+	DamageType "BFGD"
+	States
+	{
+	Spawn:
+		TNT1 A 0 Bright
+		Stop
+	}
 }
 
 Actor 64BFGFireBaseHuge

@@ -17,8 +17,9 @@
 #INCLUDE "Decorate/D4STG46.dec"
 #INCLUDE "Decorate/D4UpgradeStation.dec"
 #INCLUDE "Decorate/D4Spawners.dec"
+
 Actor D4Motherdemon_Final : Motherdemon_Final Replaces Motherdemon_Final //New boss for map28 Ultimate Absolution
 {
-	DamageFactor "BFGD", 0.1
+	DamageFactor "BFGD",0.1
 	DamageFactor "ExplosiveImpactSwarmer", 0.4
 }
