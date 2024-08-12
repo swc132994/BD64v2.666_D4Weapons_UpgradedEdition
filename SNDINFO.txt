@@ -38,16 +38,42 @@ $volume Repeater/Fire 0.8
 //===========================================================================
 Shotgun/Pickup		D4SGPICK
 
-Shotgun/Fire1 		D4SGFIR1
-Shotgun/Fire2 		D4SGFIR2
-Shotgun/Fire3 		D4SGFIR3
-Shotgun/GrenadeFire	D4SGGREN
-Shotgun/PumpIn		D4SGPUM1
-Shotgun/PumpOut		D4SGPUM2
+$random D2K16Shotgun/Fire { D2K16Shotgun/Fire1 D2K16Shotgun/Fire2 D2K16Shotgun/Fire3 D2K16Shotgun/Fire4 D2K16Shotgun/Fire5 }
+D2K16Shotgun/Fire1 "sounds/Shotgun/wpn_shotgun_fire_01.ogg"
+D2K16Shotgun/Fire2 "sounds/Shotgun/wpn_shotgun_fire_02.ogg"
+D2K16Shotgun/Fire3 "sounds/Shotgun/wpn_shotgun_fire_03.ogg"
+D2K16Shotgun/Fire4 "sounds/Shotgun/wpn_shotgun_fire_04.ogg"
+D2K16Shotgun/Fire5 "sounds/Shotgun/wpn_shotgun_fire_05.ogg"
+
+$random D2K16Shotgun/BurstFire { D2K16Shotgun/BurstFire1 D2K16Shotgun/BurstFire2 D2K16Shotgun/BurstFire3 D2K16Shotgun/BurstFire4 D2K16Shotgun/BurstFire5 }
+D2K16Shotgun/BurstFire1 "sounds/Shotgun/sfx_wpn_shotgun_triple_burst_01.ogg"
+D2K16Shotgun/BurstFire2 "sounds/Shotgun/sfx_wpn_shotgun_triple_burst_02.ogg"
+D2K16Shotgun/BurstFire3 "sounds/Shotgun/sfx_wpn_shotgun_triple_burst_03.ogg"
+D2K16Shotgun/BurstFire4 "sounds/Shotgun/sfx_wpn_shotgun_triple_burst_04.ogg"
+D2K16Shotgun/BurstFire5 "sounds/Shotgun/sfx_wpn_shotgun_triple_burst_05.ogg"
+
+$random D2K16Shotgun/GrenadeFire { D2K16Shotgun/GrenadeFire1 D2K16Shotgun/GrenadeFire2 D2K16Shotgun/GrenadeFire3 D2K16Shotgun/GrenadeFire4 D2K16Shotgun/GrenadeFire5 }
+D2K16Shotgun/GrenadeFire1 "sounds/Shotgun/wpn_shotun_pop_rockets_01.ogg"
+D2K16Shotgun/GrenadeFire2 "sounds/Shotgun/wpn_shotun_pop_rockets_02.ogg"
+D2K16Shotgun/GrenadeFire3 "sounds/Shotgun/wpn_shotun_pop_rockets_03.ogg"
+D2K16Shotgun/GrenadeFire4 "sounds/Shotgun/wpn_shotun_pop_rockets_04.ogg"
+D2K16Shotgun/GrenadeFire5 "sounds/Shotgun/wpn_shotun_pop_rockets_05.ogg"
+
+$random D2K16Shotgun/PumpIn { D2K16Shotgun/PumpIn1 D2K16Shotgun/PumpIn2 }
+D2K16Shotgun/PumpIn1 "sounds/Shotgun/wpn_shotgun_pump_in_01.ogg" 
+D2K16Shotgun/PumpIn2 "sounds/Shotgun/wpn_shotgun_pump_in_02.ogg" 
+
+$random D2K16Shotgun/PumpOut { D2K16Shotgun/PumpOut1 D2K16Shotgun/PumpOut2 }
+D2K16Shotgun/PumpOut1 "sounds/Shotgun/wpn_shotgun_pump_out_01.ogg" 
+D2K16Shotgun/PumpOut2 "sounds/Shotgun/wpn_shotgun_pump_out_02.ogg" 
+
+Shotgun/SwitchToBurstFire D4SWTCH1
+Shotgun/SwitchToExplosive D4SWTCH2
+Shotgun/TripleShotAim D4TSAIM
+
 
 $volume Shotgun/PumpIn 0.5
 $volume Shotgun/PumpOut 0.5
-$random Shotgun/Fire { Shotgun/Fire1 Shotgun/Fire2 Shotgun/Fire3 }
 
 //===========================================================================
 // Super Shotgun

@@ -52,72 +52,67 @@ Activation THINGSPEC_Activate | THINGSPEC_ThingTargets | THINGSPEC_NoDeathSpecia
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_Print("Ammo pack Recieved",2)
 		TNT1 A 0 A_GiveToTarget("Backpack",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeRepeater:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("RepeaterUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("RepeaterUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeShotgun:
 		UABB A 1 BRIGHT Light("HealthPotion")
-		TNT1 A 0 A_JumpIfInTargetInventory("ShotgunUpgrade",2,"MaxUpgrade")
-		TNT1 A 0 A_GiveToTarget("ShotgunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		TNT1 A 0 A_Jump(128,"GetExplosive")
+	GetBurst:
+		TNT1 A 0 A_JumpIfInventory("BurstMode",1,"GiveShellAmmo")
+		TNT1 A 0 A_GiveToTarget("BurstMode",1)
+		TNT1 A 0 A_Print("You have selected an upgrade for the shotgun: Burst Fire")
+		Goto FinishUpgrade
+	GetExplosive:
+		TNT1 A 0 A_JumpIfInventory("ExplosiveMode",1,"GiveShellAmmo")
+		TNT1 A 0 A_GiveToTarget("ExplosiveMode",1)
+		TNT1 A 0 A_Print("You have selected an upgrade for the shotgun: Grenade Shot")
+		Goto FinishUpgrade		
 	UpgradeSuperShotgun:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("SuperShotgunUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("SuperShotgunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeMachinegun:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("MachinegunUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("MachinegunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeChainGun:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("ChainGunUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("ChainGunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
+	GiveShellAmmo:
+		TNT1 A 0 A_GiveToTarget("Shell",8)
+		Goto FinishUpgrade		
 	UpgradeRocketLauncher:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("RocketLauncherUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("RocketLauncherUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradePlasmaRifle:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("PlasmaRifleUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("PlasmaRifleUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeGauss:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("GaussUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("GaussUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeBFG:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("BFGUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("BFGUpgrade",1)
+		Goto FinishUpgrade
+	FinishUpgrade:	
 		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
 		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto Spawn2		
 	CantUpgrade:
 		TNT1 A 0 A_Print("This weapon can't be upgraded",2)
 		TNT1 A 0 A_Noblocking

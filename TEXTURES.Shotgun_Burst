@@ -1,0 +1,332 @@
+Sprite "SH1GA0", 173, 78
+{
+	Offset -160, -90
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1FA0", 256, 128
+{
+	XScale 0.980
+	YScale 0.980
+	Offset -75, -39
+	Patch "SH1FIRE1", 0, 0
+}
+
+Sprite "SH1FB0", 256, 128
+{
+	XScale 0.950
+	YScale 0.950
+	Offset -71, -37
+	Patch "SH1FIRE2", 0, 0
+}
+
+Sprite "SH1FC0", 173, 78
+{
+	XScale 0.700
+	YScale 0.700
+	Offset -179, -95
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1FD0", 173, 78
+{
+	XScale 0.750
+	YScale 0.750
+	Offset -176, -93
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1FE0", 173, 78
+{
+	XScale 0.800
+	YScale 0.800
+	Offset -175, -91
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1FF0", 173, 78
+{
+	XScale 0.825
+	YScale 0.825
+	Offset -175, -90
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1FG0", 173, 78
+{
+	XScale 0.850
+	YScale 0.850
+	Offset -169, -88
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1FH0", 173, 78
+{
+	XScale 0.880
+	YScale 0.880
+	Offset -166, -87
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1FI0", 173, 78
+{
+	XScale 0.920
+	YScale 0.920
+	Offset -155, -83
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1GB0", 172, 78
+{
+	Offset -164, -93
+	Patch "SH1PUMP1", 0, 0
+}
+
+Sprite "SH1GC0", 171, 78
+{
+	XScale 0.980
+	YScale 0.980
+	Offset -165, -93
+	Patch "SH1PUMP2", 0, 0
+}
+
+Sprite "SH1GD0", 170, 78
+{
+	XScale 0.960
+	YScale 0.960
+	Offset -166, -92
+	Patch "SH1PUMP3", 0, 0
+}
+
+Sprite "SH1GE0", 169, 78
+{
+	XScale 0.940
+	YScale 0.940
+	Offset -167, -91
+	Patch "SH1PUMP4", 0, 0
+}
+
+Sprite "SH1GF0", 168, 78
+{
+	XScale 0.920
+	YScale 0.920
+	Offset -169, -90
+	Patch "SH1PUMP5", 0, 0
+}
+
+Sprite "SH1GG0", 167, 78
+{
+	XScale 0.900
+	YScale 0.900
+	Offset -177, -95
+	Patch "SH1PUMP6", 0, 0
+}
+
+Sprite "SH1AA0", 178, 80
+{
+	Offset -144, -91
+	Patch "SH1ALT1", 0, 0
+}
+
+Sprite "SH1AB0", 184, 81
+{
+	Offset -125, -94
+	Patch "SH1ALT2", 0, 0
+}
+
+Sprite "SH1AC0", 184, 81
+{
+	Offset -125, -94
+	Patch "SH1ALT2", 0, 0
+	Patch "LIGHT1", 0, 0
+	{
+		Style Overlay
+	}
+}
+
+Sprite "SH1AD0", 184, 81
+{
+	Offset -125, -94
+	Patch "SH1ALT2", 0, 0
+	Patch "LIGHT2", 0, 0
+	{
+		Style Overlay
+	}
+}
+
+Sprite "SH1AE0", 184, 81
+{
+	Offset -125, -94
+	Patch "SH1ALT2", 0, 0
+	Patch "LIGHT3", 0, 0
+	{
+		Style Overlay
+	}
+}
+
+Sprite "SH1AF0", 256, 128
+{
+	XScale 0.990
+	YScale 0.990
+	Offset -36, -47
+	Patch "SH1AIRE1", 0, 0
+}
+
+Sprite "SH1AG0", 256, 128
+{
+	XScale 0.980
+	YScale 0.980
+	Offset -36, -47
+	Patch "SH1AIRE2", 0, 0
+}
+
+Sprite "SH1AH0", 184, 81
+{
+	Offset -128, -96
+	Patch "SH1AIRE3", 0, 0
+}
+
+Sprite "SH1AI0", 256, 128
+{
+	XScale 0.990
+	YScale 0.990
+	Offset -56, -47
+	Patch "SH1AIRE4", 0, 0
+}
+
+Sprite "SH1AJ0", 256, 128
+{
+	XScale 0.980
+	YScale 0.980
+	Offset -38, -50
+	Patch "SH1AIRE5", 0, 0
+}
+
+Sprite "SH1AK0", 184, 81
+{
+	Offset -128, -96
+	Patch "SH1AIRE6", 0, 0
+}
+
+Sprite "SH1AL0", 256, 128
+{
+	XScale 0.990
+	YScale 0.990
+	Offset -56, -47
+	Patch "SH1AIRE7", 0, 0
+}
+
+Sprite "SH1AM0", 256, 128
+{
+	XScale 0.980
+	YScale 0.980
+	Offset -38, -50
+	Patch "SH1AIRE8", 0, 0
+}
+
+Sprite "SH1BA0", 248, 78
+{
+	Offset 29, -136
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 5, 61
+}
+
+Sprite "SH1BB0", 248, 78
+{
+	Offset 10, -117
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 16, 49
+}
+
+Sprite "SH1BC0", 248, 78
+{
+	Offset -7, -108
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 26, 31
+}
+
+Sprite "SH1BD0", 248, 78
+{
+	Offset -30, -103
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 49, 16
+}
+
+Sprite "SH1BE0", 248, 78
+{
+	Offset -50, -98
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 64, 10
+}
+
+Sprite "SH1BF0", 248, 78
+{
+	Offset -70, -90
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 72, 8
+}
+
+Sprite "SH1BG0", 248, 78
+{
+	Offset -78, -94
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 80, 13
+}
+
+Sprite "SH1BH0", 248, 78
+{
+	Offset -92, -98
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 86, 17
+}
+
+Sprite "SH1BI0", 248, 78
+{
+	Offset -106, -105
+	Patch "S1LOAD2", 98, 0
+	Patch "S1LOAD1", 88, 18
+}
+
+Sprite "SH1BJ0", 184, 78
+{
+	Offset -168, -101
+	Patch "S1LOAD3", 0, 0
+}
+
+Sprite "SH1BK0", 185, 78
+{
+	Offset -162, -97
+	Patch "S1LOAD4", 0, 0
+}
+
+Sprite "SH1BL0", 175, 78
+{
+	Offset -159, -91
+	Patch "S1LOAD5", 0, 0
+}
+
+Sprite "SH1SA0", 173, 78
+{
+	Offset -68, -147
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1SB0", 173, 78
+{
+	Offset -98, -123
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1SC0", 173, 78
+{
+	Offset -120, -109
+	Patch "SH1GIDLE", 0, 0
+}
+
+Sprite "SH1SD0", 173, 78
+{
+	Offset -147, -95
+	Patch "SH1GIDLE", 0, 0
+}
+
+// End of texture definitions

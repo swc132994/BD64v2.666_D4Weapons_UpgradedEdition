@@ -60,6 +60,30 @@ Actor BrutalD464Weapon : Brutal64Weapon Replaces Brutal64Weapon
 {
 Inventory.forbiddento "64DoomPlayer","Tactical64DoomPlayer","Tactical64DoomPlayer_P","Modern"
 VisibleToPlayerClass "Doom4Guy"
+States
+{
+	AboutUpgrade:
+		"####" "#" 0 A_Print("Find at least one of the upgrades")
+		Goto v1Ready		
+	AboutUpgradeAltFire:
+		"####" "#" 0 A_Print("Activate at least one of the upgrades")
+		Goto v1Ready
+	OneUpgradeOnly:
+		"####" "#" 0 A_Print("You only have one upgrade")
+		Goto v1Ready
+	IsCooldown:	
+		"####" "#" 0 A_Print("The upgrade is cooling down")
+		Goto v1Ready	
+	UpgradeWeapons:
+		TNT1 A 0 A_TakeInventory("IsUpgradingWeapons",1)
+		TNT1 A 0 SetPlayerProperty(0,1,4)
+		PK4P ABCDEFGH 2
+		TNT1 A 6
+		TNT1 A 0 A_PlaySound("UACBot/Pickup")
+		TNT1 A 0 SetPlayerProperty(0,0,4)
+		TNT1 A 12
+		Goto GetReady		
+	}
 }
 
 Actor D4AltMode : Inventory
@@ -104,22 +128,29 @@ Ammo.BackpackMaxAmount 2
 	}
 }
 
-ACTOR ShotgunUpgrade : Ammo
+ACTOR WeaponUpgrade : Inventory
 {
-Game Doom
-Inventory.PickupMessage "Picked up a Shotgun Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "CLIPA0"
-	States
-	{
-	Spawn:
-		CLIP A -1
-		Stop
-	}
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+	+Undroppable
 }
+Actor BurstMode : WeaponUpgrade {}
+Actor BurstFireShotgun : BurstMode {}
+Actor BurstFireActivated : BurstFireShotgun {}
+Actor ExplosiveMode : WeaponUpgrade {}
+Actor ExplosiveShotgun : ExplosiveMode {}
+Actor ExplosiveActivated : BurstFireActivated {}
+
+Actor Cooldown : Inventory
+{
+	Inventory.Amount 100
+	Inventory.MaxAmount 100
+	+UNDROPPABLE
+}
+
+Actor ExplosiveCooldown : Cooldown { }
+
+Actor BurstFireCooldown : Cooldown { }
 
 ACTOR SuperShotgunUpgrade : Ammo
 {

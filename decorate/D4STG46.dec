@@ -28,11 +28,6 @@ Tag "STG-46"
 		ST4S A 10
 		ST4S ABC 1
 		Stop
-	AirKickingFlash:
-		ST4S CBA 1
-		ST4S A 12
-		ST4S ABC 1
-		Stop
 	SlideKickingStart:
 		ST4S CBA 1
 		ST4S A 19
