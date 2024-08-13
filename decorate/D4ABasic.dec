@@ -152,6 +152,14 @@ Actor ExplosiveCooldown : Cooldown { }
 
 Actor BurstFireCooldown : Cooldown { }
 
+Actor PistolCharging : Ammo
+{
+	Inventory.Amount 50
+	Inventory.MaxAmount 50
+	+UNDROPPABLE
+}
+
+
 ACTOR SuperShotgunUpgrade : Ammo
 {
 Game Doom
