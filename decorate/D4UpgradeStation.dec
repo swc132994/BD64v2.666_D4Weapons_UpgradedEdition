@@ -62,20 +62,33 @@ Activation THINGSPEC_Activate | THINGSPEC_ThingTargets | THINGSPEC_NoDeathSpecia
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_Jump(128,"GetExplosive")
 	GetBurst:
-		TNT1 A 0 A_JumpIfInventory("BurstMode",1,"GiveShellAmmo")
+		TNT1 A 0 A_JumpIfInTargetInventory("BurstMode",1,"GiveShellAmmo")
 		TNT1 A 0 A_GiveToTarget("BurstMode",1)
 		TNT1 A 0 A_Print("You have selected an upgrade for the shotgun: Burst Fire")
 		Goto FinishUpgrade
 	GetExplosive:
-		TNT1 A 0 A_JumpIfInventory("ExplosiveMode",1,"GiveShellAmmo")
+		TNT1 A 0 A_JumpIfInTargetInventory("ExplosiveMode",1,"GiveShellAmmo")
 		TNT1 A 0 A_GiveToTarget("ExplosiveMode",1)
 		TNT1 A 0 A_Print("You have selected an upgrade for the shotgun: Grenade Shot")
-		Goto FinishUpgrade		
+		Goto FinishUpgrade
 	UpgradeSuperShotgun:
 		UABB A 1 BRIGHT Light("HealthPotion")
-		TNT1 A 0 A_JumpIfInTargetInventory("SuperShotgunUpgrade",2,"MaxUpgrade")
-		TNT1 A 0 A_GiveToTarget("SuperShotgunUpgrade",1)
+		TNT1 A 0 A_Jump(128,"GetDoubleTrouble","GetPreciseShot")
+	GetFastReload:
+		TNT1 A 0 A_JumpIfInTargetInventory("SSGFastReload",1,"GiveShellAmmo")
+		TNT1 A 0 A_GiveToTarget("SSGFastReload",1)
+		TNT1 A 0 A_Print("You have selected an upgrade for the ssg: Fast Reloading")
 		Goto FinishUpgrade
+	GetDoubleTrouble:
+		TNT1 A 0 A_JumpIfInTargetInventory("SSGDoubleTrouble",1,"GiveShellAmmo")
+		TNT1 A 0 A_GiveToTarget("SSGDoubleTrouble",1)
+		TNT1 A 0 A_Print("You have selected an upgrade for the ssg: Double Trouble (Single fire mode)")
+		Goto FinishUpgrade
+	GetPreciseShot:
+		TNT1 A 0 A_JumpIfInTargetInventory("SSGPreciseShot",1,"GiveShellAmmo")
+		TNT1 A 0 A_GiveToTarget("SSGPreciseShot",1)
+		TNT1 A 0 A_Print("You have selected an upgrade for the ssg: Precise Shot")
+		Goto FinishUpgrade	
 	UpgradeMachinegun:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("MachinegunUpgrade",2,"MaxUpgrade")

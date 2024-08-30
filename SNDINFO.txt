@@ -18,9 +18,31 @@ EnergyPistol/Pickup		D4EPPICK
 
 EnergyPistol/Charge 	D4EPCHRG
 EnergyPistol/ChargeLoop D4EPLOOP
-EnergyPistol/Fire1 		D4EPFIR1
-EnergyPistol/Fire2 		D4EPFIR2
-EnergyPistol/Fire3 		D4EPFIR3
+
+$random EnergyPistol/Fire { EnergyPistol/Fire1 EnergyPistol/Fire2 EnergyPistol/Fire3 EnergyPistol/Fire4 }
+EnergyPistol/Fire1 "sounds/EnergyPistol/wpn_pistol_sp_fire_02.ogg"
+EnergyPistol/Fire2 "sounds/EnergyPistol/wpn_pistol_sp_fire_03.ogg"
+EnergyPistol/Fire3 "sounds/EnergyPistol/wpn_pistol_sp_fire_04.ogg"
+EnergyPistol/Fire4 "sounds/EnergyPistol/wpn_pistol_sp_fire_05.ogg"
+
+$random EnergyPistol/FireCharged { EnergyPistol/FireCharged1 EnergyPistol/FireCharged2 EnergyPistol/FireCharged3 EnergyPistol/FireCharged4 
+EnergyPistol/FireCharged5 EnergyPistol/FireCharged6 EnergyPistol/FireCharged7 EnergyPistol/FireCharged8 
+EnergyPistol/FireCharged9 EnergyPistol/FireCharged10 EnergyPistol/FireCharged11 EnergyPistol/FireCharged12 EnergyPistol/FireCharged13 }
+
+EnergyPistol/FireCharged1 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_01.ogg"
+EnergyPistol/FireCharged2 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_02.ogg"
+EnergyPistol/FireCharged3 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_03.ogg"
+EnergyPistol/FireCharged4 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_04.ogg"
+EnergyPistol/FireCharged5 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_05.ogg"
+EnergyPistol/FireCharged6 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_06.ogg"
+EnergyPistol/FireCharged7 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_07.ogg"
+EnergyPistol/FireCharged8 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_08.ogg"
+EnergyPistol/FireCharged9 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_09.ogg"
+EnergyPistol/FireCharged10 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_10.ogg"
+EnergyPistol/FireCharged11 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_11.ogg"
+EnergyPistol/FireCharged12 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_12.ogg"
+EnergyPistol/FireCharged13 "sounds/EnergyPistol/wpn_pistol_sp_fire_charged_13.ogg"
+
 EnergyPistol/Beep 		D4EPBEEP 
 
 //===========================================================================
@@ -78,12 +100,22 @@ $volume Shotgun/PumpOut 0.5
 //===========================================================================
 // Super Shotgun
 //===========================================================================
-SuperShotgun/Fire 		D4SSGFIR
-SuperShotgun/4BoreFire 	D4SSG4B
-SuperShotgun/DragonFire D4SSGDRB
-SuperShotgun/Open 		D4SSGOPN
-SuperShotgun/Load 		D4SSGLOA
-SuperShotgun/Close	 	D4SSGCLS
+
+$random D2K16SuperShotgun/Fire { D2K16SuperShotgun/Fire1 D2K16SuperShotgun/Fire2 }
+D2K16SuperShotgun/Fire1 "sounds/SuperShotgun/wpn_shotgun_dbl_fire_01.ogg"
+D2K16SuperShotgun/Fire2 "sounds/SuperShotgun/wpn_shotgun_dbl_fire_02.ogg"
+
+$random D2K16SuperShotgun/Open { D2K16SuperShotgun/Open1 D2K16SuperShotgun/Open2 }
+D2K16SuperShotgun/Open1 "sounds/SuperShotgun/wpn_shotgun_dbl_reload_open_01.ogg"
+D2K16SuperShotgun/Open2 "sounds/SuperShotgun/wpn_shotgun_dbl_reload_open_02.ogg"
+
+$random D2K16SuperShotgun/Load { D2K16SuperShotgun/Load1 D2K16SuperShotgun/Load2 D2K16SuperShotgun/Load3 D2K16SuperShotgun/Load4 }
+D2K16SuperShotgun/Load1 "sounds/SuperShotgun/wpn_superShotgun_shell_insert_deep_01.ogg"
+D2K16SuperShotgun/Load2 "sounds/SuperShotgun/wpn_superShotgun_shell_insert_deep_02.ogg"
+D2K16SuperShotgun/Load3 "sounds/SuperShotgun/wpn_superShotgun_shell_insert_deep_03.ogg" 
+D2K16SuperShotgun/Load4 "sounds/SuperShotgun/wpn_superShotgun_shell_insert_deep_04.ogg"
+
+D2K16SuperShotgun/Close	 	"sounds/SuperShotgun/wpn_shotgun_dbl_reload_close_01.ogg"
 
 $volume SuperShotgun/Open 0.75
 $volume SuperShotgun/Close 0.75

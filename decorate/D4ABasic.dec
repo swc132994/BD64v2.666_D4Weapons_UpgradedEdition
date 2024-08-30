@@ -68,6 +68,9 @@ States
 	AboutUpgradeAltFire:
 		"####" "#" 0 A_Print("Activate at least one of the upgrades")
 		Goto v1Ready
+	AboutSSGUpgrade:
+		"####" "#" 0 A_Print("Find an upgrade for a precise shot")
+		Goto v1Ready		
 	OneUpgradeOnly:
 		"####" "#" 0 A_Print("You only have one upgrade")
 		Goto v1Ready
@@ -134,12 +137,21 @@ ACTOR WeaponUpgrade : Inventory
 	Inventory.MaxAmount 1
 	+Undroppable
 }
+
+//Shotgun Upgrades
 Actor BurstMode : WeaponUpgrade {}
 Actor BurstFireShotgun : BurstMode {}
 Actor BurstFireActivated : BurstFireShotgun {}
 Actor ExplosiveMode : WeaponUpgrade {}
 Actor ExplosiveShotgun : ExplosiveMode {}
 Actor ExplosiveActivated : BurstFireActivated {}
+
+//SSG Upgrades
+Actor SSGFastReload : WeaponUpgrade {}
+Actor SSGDoubleTrouble : WeaponUpgrade {}
+Actor SSGPreciseShot : WeaponUpgrade {}
+Actor SSGPreciseShotActive : SSGPreciseShot {}
+Actor SSGCounter : WeaponUpgrade { Inventory.MaxAmount 2 }
 
 Actor Cooldown : Inventory
 {
@@ -159,23 +171,6 @@ Actor PistolCharging : Ammo
 	+UNDROPPABLE
 }
 
-
-ACTOR SuperShotgunUpgrade : Ammo
-{
-Game Doom
-Inventory.PickupMessage "Picked up a Super Shotgun Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "SHELA0"
-	States
-	{
-	Spawn:
-		SHEL A -1
-		Stop
-	}
-}
 
 ACTOR MachinegunUpgrade : Ammo
 {
@@ -307,7 +302,7 @@ Scale 0.5
 	Spawn:
 		TNT1 A 0 NoDelay A_RadiusGive("RepeaterUpgrade",80,RGF_PLAYERS,2)
 //		TNT1 A 0 A_RadiusGive("ShotgunUpgrade",80,RGF_PLAYERS,2)
-		TNT1 A 0 A_RadiusGive("SuperShotgunUpgrade",80,RGF_PLAYERS,2)
+//		TNT1 A 0 A_RadiusGive("SuperShotgunUpgrade",80,RGF_PLAYERS,2)
 		TNT1 A 0 A_RadiusGive("MachinegunUpgrade",80,RGF_PLAYERS,2)
 		TNT1 A 0 A_RadiusGive("ChainGunUpgrade",80,RGF_PLAYERS,2)
 		TNT1 A 0 A_RadiusGive("RocketlauncherUpgrade",80,RGF_PLAYERS,2)
