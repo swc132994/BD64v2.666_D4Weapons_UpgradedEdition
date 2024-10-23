@@ -1,10 +1,6 @@
 ACTOR D4Pistol : BrutalD464Weapon Replaces PistolSpawner
 {
 Weapon.SelectionOrder 2400
-Weapon.BobStyle InverseSmooth
-Weapon.BobRangeX 0.4
-Weapon.BobRangeY 0.3
-Weapon.BobSpeed 1.8
 Weapon.AmmoType "PistolCharging"
 Inventory.PickupSound "EnergyPistol/Pickup"
 Inventory.PickupMessage "You got the Energy Pistol!"
@@ -34,17 +30,23 @@ Tag "Energy Pistol"
 		TNT1 A 0 A_JumpIfInventory("WeaponAltMode",1,"NoAltMode")
 		Loop
 	Deselect:
-		PISS DCBA 1
 		TNT1 A 0 A_TakeInventory("IsD4Weapon",0)
 		TNT1 A 0 A_TakeInventory("D4PeaGunSelected",0)
 		TNT1 A 0 A_TakeInventory("D4AltMode",0)
+		PISG A 1 Offset(-8, 37)
+		PISG A 1 Offset(-20, 43)
+		PISG A 1 Offset(-45, 55)
+		PISG A 1 Offset(-70, 68)
 		TNT1 A 0 A_Lower
 		Wait
 	Select:
 		TNT1 A 0 A_GiveInventory("D4PeaGunSelected",1)
 		TNT1 A 0 A_GiveInventory("IsD4Weapon",1)
-		PISS ABCD 1 Offset(0,32)
-		TNT1 A 0 A_Raise
+		PISG A 1 Offset(75, 75)
+		PISG A 1 Offset(50, 60)
+		PISG A 1 Offset(28, 45)
+		PISG A 1 Offset(10, 34)
+		TNT1 A 0 Offset(0,32) A_Raise
 		Wait
 	Fire:
 		TNT1 A 0 A_JumpIfInventory("PistolCharging",25,"ChargedFire")

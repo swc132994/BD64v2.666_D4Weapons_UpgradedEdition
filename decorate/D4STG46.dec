@@ -9,10 +9,6 @@ Weapon.AmmoGive1 20
 Weapon.AmmoType2 "RocketAmmo"
 Weapon.AmmoUse2 1
 Weapon.AmmoGive2 2
-Weapon.BobStyle InverseSmooth
-Weapon.BobRangeX 0.4
-Weapon.BobRangeY 0.3
-Weapon.BobSpeed 1.8
 Inventory.PickupMessage "You got the STG-46!"
 Obituary "%o was gunned down by %k."
 Tag "STG-46"

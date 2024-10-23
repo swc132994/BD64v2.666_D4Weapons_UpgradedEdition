@@ -4,10 +4,6 @@ Weapon.SelectionOrder 3000
 Weapon.AmmoUse 1
 Weapon.AmmoGive 2
 Weapon.AmmoType "RocketAmmo"
-Weapon.BobStyle InverseSmooth
-Weapon.BobRangeX 0.5
-Weapon.BobRangeY 0.3
-Weapon.BobSpeed 1.8
 Inventory.PickupSound "RocketLauncher/Pickup"
 Inventory.PickupMessage "$GOTLAUNCHER"
 Tag "$TAG_ROCKETLAUNCHER"

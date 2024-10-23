@@ -134,6 +134,9 @@ HeavyAssaultRifle/ScopedFire1 D4HARSF1
 HeavyAssaultRifle/ScopedFire2 D4HARSF2
 HeavyAssaultRifle/ScopedFire3 D4HARSF3
 
+HeavyAssaultRifle/SwitchToMissiles	"sounds/weapons/MG/MGSwitchToMissiles.ogg"
+HeavyAssaultRifle/SwitchToScope		"sounds/weapons/MG/MGSwitchToScope.ogg"
+
 HeavyAssaultRifle/MicroMissileOpen 	D4MMOPN
 HeavyAssaultRifle/MicroMissileReady D4MMRDY
 HeavyAssaultRifle/MicroMissileFire1 D4MFIRE1
@@ -259,9 +262,23 @@ D4LightningGun/Pickup	D4LGPICK
 
 D4LightningGun/Idle		D4LGIDLE
 
-D4LightningGun/Start 	D4LGSTRT
-D4LightningGun/Loop 	D4LGLOOP
-D4LightningGun/Stop		D4LGSTOP
+$random D4LightningGun/Start { D4LightningGun/Start1 D4LightningGun/Start2 D4LightningGun/Start3 D4LightningGun/Start4 }
+D4LightningGun/Start1 "sounds/LightningGun/Lightning_Gun_Fire_Start_01.ogg"
+D4LightningGun/Start2 "sounds/LightningGun/Lightning_Gun_Fire_Start_02.ogg"
+D4LightningGun/Start3 "sounds/LightningGun/Lightning_Gun_Fire_Start_03.ogg"
+D4LightningGun/Start4 "sounds/LightningGun/Lightning_Gun_Fire_Start_04.ogg"
+
+$random D4LightningGun/Loop { D4LightningGun/Loop1 D4LightningGun/Loop2 D4LightningGun/Loop3 D4LightningGun/Loop4 }
+D4LightningGun/Loop1 "sounds/LightningGun/Lightning_Gun_Fire_Loop_01.ogg"
+D4LightningGun/Loop2 "sounds/LightningGun/Lightning_Gun_Fire_Loop_02.ogg"
+D4LightningGun/Loop3 "sounds/LightningGun/Lightning_Gun_Fire_Loop_03.ogg"
+D4LightningGun/Loop4 "sounds/LightningGun/Lightning_Gun_Fire_Loop_04.ogg"
+
+$random D4LightningGun/Stop	{ D4LightningGun/Stop1 D4LightningGun/Stop2 D4LightningGun/Stop3 D4LightningGun/Stop4 }
+D4LightningGun/Stop1 "sounds/LightningGun/Lightning_Gun_Fire_Stop_01.ogg"
+D4LightningGun/Stop2 "sounds/LightningGun/Lightning_Gun_Fire_Stop_02.ogg"
+D4LightningGun/Stop3 "sounds/LightningGun/Lightning_Gun_Fire_Stop_03.ogg"
+D4LightningGun/Stop4 "sounds/LightningGun/Lightning_Gun_Fire_Stop_04.ogg"
 
 //===========================================================================
 //

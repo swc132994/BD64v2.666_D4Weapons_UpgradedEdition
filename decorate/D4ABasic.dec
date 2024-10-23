@@ -58,8 +58,15 @@ actor 64MP40TacticalRemover : 64RifleTacticalRemover Replaces 64MP40Tactical {}
 
 Actor BrutalD464Weapon : Brutal64Weapon Replaces Brutal64Weapon
 {
+Weapon.BobStyle InverseSmooth
+Weapon.BobRangeX 0.5
+Weapon.BobRangeY 0.3
+Weapon.BobSpeed 1.7
 Inventory.forbiddento "64DoomPlayer","Tactical64DoomPlayer","Tactical64DoomPlayer_P","Modern"
 VisibleToPlayerClass "Doom4Guy"
++WEAPON.AMMO_OPTIONAL
++WEAPON.ALT_AMMO_OPTIONAL
++WEAPON.AMMO_CHECKBOTH
 States
 {
 	AboutUpgrade:
@@ -114,23 +121,6 @@ Actor IsD4Weapon : Inventory
 inventory.maxamount 1
 }
 
-ACTOR RepeaterUpgrade : Ammo
-{
-Game Doom
-Inventory.PickupMessage "Picked up a Repeater Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "D4W2B0"
-	States
-	{
-	Spawn:
-		D4W2 B -1
-		Stop
-	}
-}
-
 ACTOR WeaponUpgrade : Inventory
 {
 	Inventory.Amount 1
@@ -150,7 +140,6 @@ Actor ExplosiveActivated : BurstFireActivated {}
 Actor SSGFastReload : WeaponUpgrade {}
 Actor SSGDoubleTrouble : WeaponUpgrade {}
 Actor SSGPreciseShot : WeaponUpgrade {}
-Actor SSGPreciseShotActive : SSGPreciseShot {}
 Actor SSGCounter : WeaponUpgrade { Inventory.MaxAmount 2 }
 
 Actor Cooldown : Inventory
@@ -171,22 +160,18 @@ Actor PistolCharging : Ammo
 	+UNDROPPABLE
 }
 
+//HAR Upgrades
+Actor MicroMissilesMode : WeaponUpgrade {} 
+Actor HARMicroMissiles : MicroMissilesMode {} 
+Actor MicroMissilesActive : HARMicroMissiles {} 
+Actor TacticalScopeMode : WeaponUpgrade {} 
+Actor HARTacticalScope : TacticalScopeMode {} 
 
-ACTOR MachinegunUpgrade : Ammo
+Actor MicroMissilesAmmo : Ammo
 {
-Game Doom
-Inventory.PickupMessage "Picked up a Shotgun Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "CLIPA0"
-	States
-	{
-	Spawn:
-		CLIP A -1
-		Stop
-	}
+	Inventory.Amount 6
+	Inventory.MaxAmount 6
+	+UNDROPPABLE
 }
 
 ACTOR ChaingunUpgrade : Ammo
@@ -333,55 +318,25 @@ Powerup.Duration -3
 	}
 }
 
-Actor D4PeaGunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4PeaGunSelected : IsD4Weapon {}
 
-Actor D4RepeaterSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4ShotgunSelected : IsD4Weapon {}
 
-Actor D4ShotgunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4SSGSelected : IsD4Weapon {}
 
-Actor D4SSGSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4MachinegunSelected : IsD4Weapon {}
 
-Actor D4MachinegunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4PlasmaSelected : IsD4Weapon {}
 
-Actor D4PlasmaSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4RocketSelected : IsD4Weapon {}
 
-Actor D4RocketSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4ChaingunSelected : IsD4Weapon {}
 
-Actor D4ChaingunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4GaussSelected : IsD4Weapon {}
 
-Actor D4GaussSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4BFGSelected : IsD4Weapon {}
 
-Actor D4BFGSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4MPWepSelected : IsD4Weapon {}
 
 Actor IsUpgradingWeapons : Inventory
 {

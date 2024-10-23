@@ -1,5 +1,5 @@
 //REPLACE BD64 SPECIFIC SPAWNERS
-Actor D4DroppedShotgunSpawner : DroppedShotgunSpawner Replaces DroppedShotgunSpawner
+/*Actor D4DroppedShotgunSpawner : 64Shotgun
 {
 	States
 	{
@@ -10,7 +10,7 @@ Actor D4DroppedShotgunSpawner : DroppedShotgunSpawner Replaces DroppedShotgunSpa
 	}
 }
 
-Actor D4DroppedSuperShotgunSpawner : DroppedSuperShotgunSpawner Replaces DroppedSuperShotgunSpawner
+Actor D4DroppedSuperShotgunSpawner : 64SuperShotgun
 {
 	States
 	{
@@ -21,7 +21,7 @@ Actor D4DroppedSuperShotgunSpawner : DroppedSuperShotgunSpawner Replaces Dropped
 	}
 }
 
-Actor D4DroppedDroppedRifleSpawner : DroppedRifleSpawner Replaces DroppedRifleSpawner
+Actor D4DroppedDroppedRifleSpawner : 64Rifle
 {
 	States
 	{
@@ -32,7 +32,7 @@ Actor D4DroppedDroppedRifleSpawner : DroppedRifleSpawner Replaces DroppedRifleSp
 	}
 }
 
-Actor D4DroppedChaingunSpawner : DroppedChaingunSpawner Replaces DroppedChaingunSpawner
+Actor D4DroppedChaingunSpawner : 64Chaingun
 {
 	States
 	{
@@ -43,7 +43,7 @@ Actor D4DroppedChaingunSpawner : DroppedChaingunSpawner Replaces DroppedChaingun
 	}
 }
 
-Actor D4DroppedChainsawSpawner : DroppedChainsawSpawner Replaces DroppedChainsawSpawner
+Actor D4DroppedChainsawSpawner : 64Chainsaw
 {
 	States
 	{
@@ -52,7 +52,7 @@ Actor D4DroppedChainsawSpawner : DroppedChainsawSpawner Replaces DroppedChainsaw
 		TNT1 A 1 A_DropItem("D4Chainsaw")
 		Stop
 	}
-}
+}*/
 
 //WEAPON UPGRADE
 Actor D4upgradebotspawner Replaces 64Backpack
