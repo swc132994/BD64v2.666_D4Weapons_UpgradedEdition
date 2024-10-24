@@ -11,10 +11,6 @@ Weapon.UpSound "null"
 Weapon.AmmoType "SawGas"
 Weapon.AmmoUse 1
 Weapon.AmmoGive 100
-Weapon.BobStyle InverseSmooth
-Weapon.BobRangeX 0.4
-Weapon.BobRangeY 0.3
-Weapon.BobSpeed 1.8
 +WEAPON.MELEEWEAPON
 +NOAUTOFIRE
 +WEAPON.AXEBLOOD

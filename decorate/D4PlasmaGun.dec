@@ -4,10 +4,6 @@ Weapon.SelectionOrder 100
 Weapon.AmmoUse 1
 Weapon.AmmoGive 20
 Weapon.AmmoType "Cell"
-Weapon.BobStyle InverseSmooth
-Weapon.BobRangeX 0.4
-Weapon.BobRangeY 0.3
-Weapon.BobSpeed 1.8
 Inventory.PickupSound "PlasmaRifle/Pickup"
 Inventory.PickupMessage "You got the Plasma Gun!"
 Obituary "$OB_MPPLASMARIFLE"
