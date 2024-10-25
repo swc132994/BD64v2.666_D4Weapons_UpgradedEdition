@@ -29,16 +29,20 @@ Tag "Repeater Rifle"
 	Ready:
 		TNT1 A 0 A_JumpIfInventory("IsUpgradingWeapons",1,"UpgradeWeapons")
 		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick")
+		TNT1 A 0 A_JumpIfInventory("WeaponAltMode",1,"NoAltMode")
 		RPTG A 1 A_WeaponReady
 		Loop
 	Ready2:
 		TNT1 A 0 A_JumpIfInventory("IsUpgradingWeapons",1,"UpgradeWeapons")
 		TNT1 A 0 A_JumpIfInventory("Kicking",1,"DoKick")
+		TNT1 A 0 A_JumpIfInventory("WeaponAltMode",1,"NoAltMode")
 		RPTG E 1 A_WeaponReady
 		Loop
 	Deselect:
+		TNT1 A 0 A_ZoomFactor(1)
 		TNT1 A 0 A_TakeInventory("IsD4Weapon",0)
-		TNT1 A 0 A_TakeInventory("D4MPWepSelected",0)
+		TNT1 A 0 A_TakeInventory("Zoomed",0)
+		TNT1 A 0 A_TakeInventory("D4PeaGunSelected",0)
 		TNT1 A 0 A_TakeInventory("D4AltMode",0)
 		RPTG A 1 Offset(-8, 37)
 		RPTG A 1 Offset(-20, 43)
@@ -47,7 +51,7 @@ Tag "Repeater Rifle"
 		TNT1 A 0 A_Lower
 		Wait
 	Select:
-		TNT1 A 0 A_GiveInventory("D4MPWepSelected",1)
+		TNT1 A 0 A_GiveInventory("D4PeaGunSelected",1)
 		TNT1 A 0 A_GiveInventory("IsD4Weapon",1)
 		RPTG A 1 Offset(75, 75)
 		RPTG A 1 Offset(50, 60)
@@ -97,6 +101,10 @@ Tag "Repeater Rifle"
 		TNT1 A 0 A_ZoomFactor(1)
 		TNT1 A 0 A_TakeInventory("Zoomed",1)
 		RPTG DCB 1
+		Goto Ready
+	NoAltMode:
+		TNT1 A 0 A_TakeInventory("WeaponAltMode",1)
+		TNT1 A 0 ACS_NamedExecuteWithResult("NoUpgradedWeapons",3)
 		Goto Ready		
 	}
 }

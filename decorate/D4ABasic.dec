@@ -336,8 +336,6 @@ Actor D4GaussSelected : IsD4Weapon {}
 
 Actor D4BFGSelected : IsD4Weapon {}
 
-Actor D4MPWepSelected : IsD4Weapon {}
-
 Actor IsUpgradingWeapons : Inventory
 {
 inventory.maxamount 1

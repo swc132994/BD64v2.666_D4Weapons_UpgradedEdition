@@ -1,4 +1,3 @@
-
 Script "BurstFireShotgunStartCooldown" (void)
 {
 	GiveInventory("BurstFireCooldown",25);
@@ -43,6 +42,21 @@ script "SSGFireUpgradeCheck" (void)
 	TakeInventory("Shell",2);
 	}	
 }
+
+Script "NoUpgradedWeapons" (int Weapon)
+{
+	static str NoAltModeWeapon[6] = { "the Chainsaw", "the Energy Pistol", "the Repeater", "the Lightning Gun", "this thing...", "the STG-46" };
+	
+	If(CheckWeapon("64BrownFist"))
+	{
+	Print(s:"Go hit the gym."); delay(2);
+	}
+	else
+	{
+	Print(s:"UAC Modpacks do not apply to ", s:NoAltModeWeapon[Weapon-1]); delay(2);
+	}
+}
+	
 
 Script "NuDoomUnmakerChecker" (void)		//checks if you have unmaker to allow spawn of soul ammo
 {
