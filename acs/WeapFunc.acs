@@ -1,0 +1,76 @@
+Script "BurstFireShotgunStartCooldown" (void)
+{
+	GiveInventory("BurstFireCooldown",25);
+	TakeInventory("BurstFireActivated",1);
+	
+	ACS_NamedExecute("ShotgunUpgradeCooldown",0,0,0,0);
+}
+
+Script "ExplosiveShotgunStartCooldown" (void)
+{
+	GiveInventory("ExplosiveCooldown",50);
+	TakeInventory("ExplosiveActivated",1);
+	
+	ACS_NamedExecute("ShotgunUpgradeCooldown",0,0,0,0);
+}
+
+Script "ShotgunUpgradeCooldown" (void)
+{
+	if(CheckInventory("BurstFireCooldown"))
+	{
+	Delay(25);
+	TakeInventory("BurstFireCooldown",1);
+	}
+
+	if(CheckInventory("ExplosiveCooldown"))
+	{
+	delay(25);
+	TakeInventory("ExplosiveCooldown",1);
+	}
+}
+
+script "SSGFireUpgradeCheck" (void)
+{
+	if(CheckInventory("SSGDoubleTrouble"))
+	{
+	GiveInventory("SSGCounter",1);
+	TakeInventory("Shell",1);
+	}
+	else
+	{
+	GiveInventory("SSGCounter",2);
+	TakeInventory("Shell",2);
+	}	
+}
+
+Script "NoUpgradedWeapons" (int Weapon)
+{
+	static str NoAltModeWeapon[6] = { "the Chainsaw", "the Energy Pistol", "the Repeater", "the Lightning Gun", "this thing...", "the STG-46" };
+	
+	If(CheckWeapon("64BrownFist"))
+	{
+	Print(s:"Go hit the gym."); delay(2);
+	}
+	else
+	{
+	Print(s:"UAC Modpacks do not apply to ", s:NoAltModeWeapon[Weapon-1]); delay(2);
+	}
+}
+	
+
+Script "NuDoomUnmakerChecker" (void)		//checks if you have unmaker to allow spawn of soul ammo
+{
+	for(int i = 2337; i < 2400; i++)
+	{
+		if(CheckActorInventory(i,"D4Unmaker") && CheckActorInventory(i,"WpnPower1Icon") && CheckActorInventory(i,"WpnPower2Icon") && CheckActorInventory(i,"WpnPower3Icon"))		//Checks if you have unmaker & demon keys
+		{
+			SetResultValue(3);
+			break;
+		}
+		if(CheckActorInventory(i,"D4Unmaker"))
+		{
+			SetResultValue(2);
+			break;
+		}
+	}
+}

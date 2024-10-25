@@ -4,10 +4,6 @@ Weapon.SelectionOrder 700
 Weapon.AmmoUse 1
 Weapon.AmmoGive 20
 Weapon.AmmoType "64HighCaliberBox"
-Weapon.BobStyle InverseSmooth
-Weapon.BobRangeX 0.5
-Weapon.BobRangeY 0.4
-Weapon.BobSpeed 1.7
 Inventory.PickupSound "Minigun/Pickup"
 Inventory.PickupMessage "$GOTCHAINGUN"
 Obituary "$OB_MPCHAINGUN"

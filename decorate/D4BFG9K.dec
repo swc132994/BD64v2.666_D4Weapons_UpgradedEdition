@@ -4,10 +4,6 @@ Weapon.SelectionOrder 2800
 Weapon.AmmoUse 40
 Weapon.AmmoGive 40
 Weapon.AmmoType "Cell"
-Weapon.BobStyle InverseSmooth
-Weapon.BobRangeX 0.5
-Weapon.BobRangeY 0.3
-Weapon.BobSpeed 1.7
 Inventory.PickupSound "D4BFG/Pickup"
 Inventory.PickupMessage "$GOTBFG9000"
 Obituary "$OB_MPBFG_MBF"
