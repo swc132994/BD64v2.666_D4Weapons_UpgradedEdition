@@ -60,6 +60,7 @@ Actor BrutalD464Weapon : Brutal64Weapon Replaces Brutal64Weapon
 {
 Inventory.forbiddento "64DoomPlayer","Tactical64DoomPlayer","Tactical64DoomPlayer_P","Modern"
 VisibleToPlayerClass "Doom4Guy"
+-WEAPON.AMMO_CHECKBOTH
 }
 
 Actor D4AltMode : Inventory
