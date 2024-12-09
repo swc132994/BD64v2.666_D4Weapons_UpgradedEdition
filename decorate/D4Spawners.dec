@@ -1,5 +1,5 @@
 //REPLACE BD64 SPECIFIC SPAWNERS
-/*Actor D4DroppedShotgunSpawner : 64Shotgun
+Actor D4DroppedShotgunSpawner : ShotgunDrop Replaces ShotgunDrop
 {
 	States
 	{
@@ -10,7 +10,7 @@
 	}
 }
 
-Actor D4DroppedSuperShotgunSpawner : 64SuperShotgun
+Actor D4DroppedSuperShotgunSpawner : SSGDrop Replaces SSGDrop
 {
 	States
 	{
@@ -21,7 +21,7 @@ Actor D4DroppedSuperShotgunSpawner : 64SuperShotgun
 	}
 }
 
-Actor D4DroppedDroppedRifleSpawner : 64Rifle
+Actor D4DroppedDroppedRifleSpawner : RifleDrop Replaces RifleDrop
 {
 	States
 	{
@@ -32,7 +32,7 @@ Actor D4DroppedDroppedRifleSpawner : 64Rifle
 	}
 }
 
-Actor D4DroppedChaingunSpawner : 64Chaingun
+Actor D4DroppedChaingunSpawner : ChaingunDrop Replaces ChaingunDrop
 {
 	States
 	{
@@ -43,7 +43,7 @@ Actor D4DroppedChaingunSpawner : 64Chaingun
 	}
 }
 
-Actor D4DroppedChainsawSpawner : 64Chainsaw
+Actor D4DroppedChainsawSpawner : ChainsawDrop Replaces ChainsawDrop
 {
 	States
 	{
@@ -52,7 +52,7 @@ Actor D4DroppedChainsawSpawner : 64Chainsaw
 		TNT1 A 1 A_DropItem("D4Chainsaw")
 		Stop
 	}
-}*/
+}
 
 //WEAPON UPGRADE
 Actor D4upgradebotspawner Replaces 64Backpack
