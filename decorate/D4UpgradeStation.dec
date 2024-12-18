@@ -37,7 +37,6 @@ Activation THINGSPEC_Activate | THINGSPEC_ThingTargets | THINGSPEC_NoDeathSpecia
 		Goto CantUpgrade
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("D4PeaGunSelected",1,"UpgradePeaGun")
-		TNT1 A 0 A_JumpIfInTargetInventory("D4RepeaterSelected",1,"UpgradeRepeater")
 		TNT1 A 0 A_JumpIfInTargetInventory("D4ShotgunSelected",1,"UpgradeShotgun")
 		TNT1 A 0 A_JumpIfInTargetInventory("D4SSGSelected",1,"UpgradeSuperShotgun")
 		TNT1 A 0 A_JumpIfInTargetInventory("D4MachinegunSelected",1,"UpgradeMachinegun")
@@ -50,76 +49,85 @@ Activation THINGSPEC_Activate | THINGSPEC_ThingTargets | THINGSPEC_NoDeathSpecia
 		Goto CantUpgrade
 	UpgradePeaGun:
 		UABB A 1 BRIGHT Light("HealthPotion")
-		TNT1 A 0 A_Print("Ammo pack Recieved",2)
+		TNT1 A 0 A_Log("Ammo pack Recieved")
 		TNT1 A 0 A_GiveToTarget("Backpack",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
-	UpgradeRepeater:
-		UABB A 1 BRIGHT Light("HealthPotion")
-		TNT1 A 0 A_JumpIfInTargetInventory("RepeaterUpgrade",2,"MaxUpgrade")
-		TNT1 A 0 A_GiveToTarget("RepeaterUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeShotgun:
 		UABB A 1 BRIGHT Light("HealthPotion")
-		TNT1 A 0 A_JumpIfInTargetInventory("ShotgunUpgrade",2,"MaxUpgrade")
-		TNT1 A 0 A_GiveToTarget("ShotgunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		TNT1 A 0 A_Jump(128,"GetExplosive")
+	GetBurst:
+		TNT1 A 0 A_JumpIfInTargetInventory("BurstMode",1,"UpgradePeaGun")
+		TNT1 A 0 A_GiveToTarget("BurstMode",1)
+		TNT1 A 0 A_Log("You have selected an upgrade for the shotgun: Burst Fire")
+		Goto FinishUpgrade
+	GetExplosive:
+		TNT1 A 0 A_JumpIfInTargetInventory("ExplosiveMode",1,"UpgradePeaGun")
+		TNT1 A 0 A_GiveToTarget("ExplosiveMode",1)
+		TNT1 A 0 A_Log("You have selected an upgrade for the shotgun: Grenade Shot")
+		Goto FinishUpgrade
 	UpgradeSuperShotgun:
 		UABB A 1 BRIGHT Light("HealthPotion")
-		TNT1 A 0 A_JumpIfInTargetInventory("SuperShotgunUpgrade",2,"MaxUpgrade")
-		TNT1 A 0 A_GiveToTarget("SuperShotgunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		TNT1 A 0 A_Jump(128,"GetDoubleTrouble","GetPreciseShot")
+	GetFastReload:
+		TNT1 A 0 A_JumpIfInTargetInventory("SSGFastReload",1,"UpgradePeaGun")
+		TNT1 A 0 A_GiveToTarget("SSGFastReload",1)
+		TNT1 A 0 A_Log("You have selected an upgrade for the ssg: Fast Reloading")
+		Goto FinishUpgrade
+	GetDoubleTrouble:
+		TNT1 A 0 A_JumpIfInTargetInventory("SSGDoubleTrouble",1,"UpgradePeaGun")
+		TNT1 A 0 A_GiveToTarget("SSGDoubleTrouble",1)
+		TNT1 A 0 A_Log("You have selected an upgrade for the ssg: Double Trouble (Single fire mode)")
+		Goto FinishUpgrade
+	GetPreciseShot:
+		TNT1 A 0 A_JumpIfInTargetInventory("SSGPreciseShot",1,"UpgradePeaGun")
+		TNT1 A 0 A_GiveToTarget("SSGPreciseShot",1)
+		TNT1 A 0 A_Log("You have selected an upgrade for the ssg: Precise Shot")
+		Goto FinishUpgrade	
 	UpgradeMachinegun:
 		UABB A 1 BRIGHT Light("HealthPotion")
-		TNT1 A 0 A_JumpIfInTargetInventory("MachinegunUpgrade",2,"MaxUpgrade")
-		TNT1 A 0 A_GiveToTarget("MachinegunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		TNT1 A 0 A_Jump(128,"GetTacticalScope")
+	GetMicroMissiles:	
+		TNT1 A 0 A_JumpIfInTargetInventory("MicroMissilesMode",1,"UpgradePeaGun")
+		TNT1 A 0 A_GiveToTarget("MicroMissilesMode",1)
+		TNT1 A 0 A_Log("You have selected an upgrade for the har: Micro Missiles")
+		Goto FinishUpgrade		
+	GetTacticalScope:	
+		TNT1 A 0 A_JumpIfInTargetInventory("TacticalScopeMode",1,"UpgradePeaGun")
+		TNT1 A 0 A_GiveToTarget("TacticalScopeMode",1)
+		TNT1 A 0 A_Log("You have selected an upgrade for the har: Tactical Scope")
+		Goto FinishUpgrade
 	UpgradeChainGun:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("ChainGunUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("ChainGunUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
+		
 	UpgradeRocketLauncher:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("RocketLauncherUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("RocketLauncherUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradePlasmaRifle:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("PlasmaRifleUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("PlasmaRifleUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeGauss:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("GaussUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("GaussUpgrade",1)
-		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
-		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto FinishUpgrade
 	UpgradeBFG:
 		UABB A 1 BRIGHT Light("HealthPotion")
 		TNT1 A 0 A_JumpIfInTargetInventory("BFGUpgrade",2,"MaxUpgrade")
 		TNT1 A 0 A_GiveToTarget("BFGUpgrade",1)
+		Goto FinishUpgrade
+	FinishUpgrade:	
 		TNT1 A 0 A_GiveToTarget("IsUpgradingWeapons",1)
 		UABB ABABCDCD 2 BRIGHT Light("HealthPotion")
-		Goto Spawn2
+		Goto Spawn2		
 	CantUpgrade:
-		TNT1 A 0 A_Print("This weapon can't be upgraded",2)
+		TNT1 A 0 A_Log("This weapon can't be upgraded")
 		TNT1 A 0 A_Noblocking
 		TNT1 A 0 A_ChangeFlag("USESPECIAL",0)
 		TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
@@ -130,7 +138,7 @@ Activation THINGSPEC_Activate | THINGSPEC_ThingTargets | THINGSPEC_NoDeathSpecia
 		TNT1 A -1
 		Goto Spawn
 	MaxUpgrade:
-		TNT1 A 0 A_Print("This weapon already has all possible upgrades",2)
+		TNT1 A 0 A_Log("This weapon already has all possible upgrades")
 		TNT1 A 0 A_ChangeFlag("USESPECIAL",0)
 		TNT1 A 0 A_ChangeFlag("THRUACTORS",1)
 		TNT1 A 0 A_ChangeFlag("NOGRAVITY",0)

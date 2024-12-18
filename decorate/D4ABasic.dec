@@ -58,9 +58,42 @@ actor 64MP40TacticalRemover : 64RifleTacticalRemover Replaces 64MP40Tactical {}
 
 Actor BrutalD464Weapon : Brutal64Weapon Replaces Brutal64Weapon
 {
+Weapon.BobStyle InverseSmooth
+Weapon.BobRangeX 0.5
+Weapon.BobRangeY 0.3
+Weapon.BobSpeed 1.7
 Inventory.forbiddento "64DoomPlayer","Tactical64DoomPlayer","Tactical64DoomPlayer_P","Modern"
 VisibleToPlayerClass "Doom4Guy"
--WEAPON.AMMO_CHECKBOTH
++WEAPON.AMMO_OPTIONAL
++WEAPON.ALT_AMMO_OPTIONAL
++WEAPON.AMMO_CHECKBOTH
+States
+{
+	AboutUpgrade:
+		"####" "#" 0 A_Print("Find at least one of the upgrades")
+		Goto v1Ready		
+	AboutUpgradeAltFire:
+		"####" "#" 0 A_Print("Activate at least one of the upgrades")
+		Goto v1Ready
+	AboutSSGUpgrade:
+		"####" "#" 0 A_Print("Find an upgrade for a precise shot")
+		Goto v1Ready		
+	OneUpgradeOnly:
+		"####" "#" 0 A_Print("You only have one upgrade")
+		Goto v1Ready
+	IsCooldown:	
+		"####" "#" 0 A_Print("The upgrade is cooling down")
+		Goto v1Ready	
+	UpgradeWeapons:
+		TNT1 A 0 A_TakeInventory("IsUpgradingWeapons",1)
+		TNT1 A 0 SetPlayerProperty(0,1,4)
+		PK4P ABCDEFGH 2
+		TNT1 A 6
+		TNT1 A 0 A_PlaySound("UACBot/Pickup")
+		TNT1 A 0 SetPlayerProperty(0,0,4)
+		TNT1 A 12
+		Goto GetReady		
+	}
 }
 
 Actor D4AltMode : Inventory
@@ -88,72 +121,57 @@ Actor IsD4Weapon : Inventory
 inventory.maxamount 1
 }
 
-ACTOR RepeaterUpgrade : Ammo
+ACTOR WeaponUpgrade : Inventory
 {
-Game Doom
-Inventory.PickupMessage "Picked up a Repeater Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "D4W2B0"
-	States
-	{
-	Spawn:
-		D4W2 B -1
-		Stop
-	}
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+	+Undroppable
 }
 
-ACTOR ShotgunUpgrade : Ammo
+//Shotgun Upgrades
+Actor BurstMode : WeaponUpgrade {}
+Actor BurstFireShotgun : BurstMode {}
+Actor BurstFireActivated : BurstFireShotgun {}
+Actor ExplosiveMode : WeaponUpgrade {}
+Actor ExplosiveShotgun : ExplosiveMode {}
+Actor ExplosiveActivated : BurstFireActivated {}
+
+//SSG Upgrades
+Actor SSGFastReload : WeaponUpgrade {}
+Actor SSGDoubleTrouble : WeaponUpgrade {}
+Actor SSGPreciseShot : WeaponUpgrade {}
+Actor SSGCounter : WeaponUpgrade { Inventory.MaxAmount 2 }
+
+Actor Cooldown : Inventory
 {
-Game Doom
-Inventory.PickupMessage "Picked up a Shotgun Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "CLIPA0"
-	States
-	{
-	Spawn:
-		CLIP A -1
-		Stop
-	}
+	Inventory.Amount 100
+	Inventory.MaxAmount 100
+	+UNDROPPABLE
 }
 
-ACTOR SuperShotgunUpgrade : Ammo
+Actor ExplosiveCooldown : Cooldown { }
+
+Actor BurstFireCooldown : Cooldown { }
+
+Actor PistolCharging : Ammo
 {
-Game Doom
-Inventory.PickupMessage "Picked up a Super Shotgun Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "SHELA0"
-	States
-	{
-	Spawn:
-		SHEL A -1
-		Stop
-	}
+	Inventory.Amount 50
+	Inventory.MaxAmount 50
+	+UNDROPPABLE
 }
 
-ACTOR MachinegunUpgrade : Ammo
+//HAR Upgrades
+Actor MicroMissilesMode : WeaponUpgrade {} 
+Actor HARMicroMissiles : MicroMissilesMode {} 
+Actor MicroMissilesActive : HARMicroMissiles {} 
+Actor TacticalScopeMode : WeaponUpgrade {} 
+Actor HARTacticalScope : TacticalScopeMode {} 
+
+Actor MicroMissilesAmmo : Ammo
 {
-Game Doom
-Inventory.PickupMessage "Picked up a Shotgun Upgrade."
-Inventory.Amount 1
-Inventory.MaxAmount 2
-Ammo.BackpackAmount 0
-Ammo.BackpackMaxAmount 2
-//Inventory.Icon "CLIPA0"
-	States
-	{
-	Spawn:
-		CLIP A -1
-		Stop
-	}
+	Inventory.Amount 6
+	Inventory.MaxAmount 6
+	+UNDROPPABLE
 }
 
 ACTOR ChaingunUpgrade : Ammo
@@ -268,8 +286,8 @@ Scale 0.5
 	Death:
 	Spawn:
 		TNT1 A 0 NoDelay A_RadiusGive("RepeaterUpgrade",80,RGF_PLAYERS,2)
-		TNT1 A 0 A_RadiusGive("ShotgunUpgrade",80,RGF_PLAYERS,2)
-		TNT1 A 0 A_RadiusGive("SuperShotgunUpgrade",80,RGF_PLAYERS,2)
+//		TNT1 A 0 A_RadiusGive("ShotgunUpgrade",80,RGF_PLAYERS,2)
+//		TNT1 A 0 A_RadiusGive("SuperShotgunUpgrade",80,RGF_PLAYERS,2)
 		TNT1 A 0 A_RadiusGive("MachinegunUpgrade",80,RGF_PLAYERS,2)
 		TNT1 A 0 A_RadiusGive("ChainGunUpgrade",80,RGF_PLAYERS,2)
 		TNT1 A 0 A_RadiusGive("RocketlauncherUpgrade",80,RGF_PLAYERS,2)
@@ -300,55 +318,23 @@ Powerup.Duration -3
 	}
 }
 
-Actor D4PeaGunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4PeaGunSelected : IsD4Weapon {}
 
-Actor D4RepeaterSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4ShotgunSelected : IsD4Weapon {}
 
-Actor D4ShotgunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4SSGSelected : IsD4Weapon {}
 
-Actor D4SSGSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4MachinegunSelected : IsD4Weapon {}
 
-Actor D4MachinegunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4PlasmaSelected : IsD4Weapon {}
 
-Actor D4PlasmaSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4RocketSelected : IsD4Weapon {}
 
-Actor D4RocketSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4ChaingunSelected : IsD4Weapon {}
 
-Actor D4ChaingunSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4GaussSelected : IsD4Weapon {}
 
-Actor D4GaussSelected : Inventory
-{
-inventory.maxamount 1
-}
-
-Actor D4BFGSelected : Inventory
-{
-inventory.maxamount 1
-}
+Actor D4BFGSelected : IsD4Weapon {}
 
 Actor IsUpgradingWeapons : Inventory
 {
